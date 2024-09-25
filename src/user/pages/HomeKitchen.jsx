@@ -16,7 +16,7 @@ const HomeKitchen = () => {
       <div className="w-full h-full     flex flex-wrap gap-5 justify-center ">
         {homeKitch.map((item) => {
           return(
-            <div className="w-auto h-auto rounded-xl border border-black"
+            <div className="w-auto h-auto rounded-xl shadow-2xl bg-white"
              key={item.id}>
             <img className="w-68 h-72 rounded-xl" src={item.image} alt={item.name} />
             <div className="mt-4 ml-4 mb-2">

@@ -22,7 +22,7 @@ const Matresses = () => {
         {matressesOnly.map((item) => {
           return(
             <div 
-            className="w-auto h-auto rounded-xl border border-black" 
+            className="w-auto h-auto rounded-xl bg-white shadow-2xl" 
             key={item.id}>
             <img className="w-68 h-72 rounded-xl" src={item.image} alt={item.name} />
             <div className="mt-4 ml-4 mb-2">

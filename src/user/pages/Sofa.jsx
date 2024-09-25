@@ -9,7 +9,7 @@ const Sofa = () => {
     (item) => item.category === "Sofa & Seating"
   );
   return (
-    <div className="mt-20">
+    <div className="mt-20 ">
       <div>
         <h1 className="p-6 text-2xl font-bold">
           <center>Sofa & Seating</center>
@@ -19,11 +19,11 @@ const Sofa = () => {
         {sofaSeating.map((item) => {
           return (
             <div
-              className="w-auto h-auto rounded-xl border border-black shadow-2xl"
+              className="w-auto h-auto rounded-xl  shadow-2xl bg-white"
               key={item.id}
             >
               <img
-                className="w-68 h-72  p-3 rounded-xl object-cover"
+                className="w-72 h-72 rounded-xl  p-3  "
                 src={item.image}
                 alt={item.name}
               />

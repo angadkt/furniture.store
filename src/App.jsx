@@ -17,6 +17,7 @@ import Dining from "./user/pages/Dining";
 import LampsLighting from "./user/pages/LampsLighting";
 import ProductDetails from "./user/components/ProductDetails";
 import CartView from "./user/components/CartView";
+import PaymentPage from "./user/pages/PaymentPage";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/lampLighting" element={<LampsLighting />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<CartView />} />
+            <Route path="/payment" element={<PaymentPage />} />
           </Route>
 
           <Route path="/signup" element={<RegistrationForm />} />

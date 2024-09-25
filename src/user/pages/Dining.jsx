@@ -19,7 +19,7 @@ const Dining = () => {
         {diningProducts.map((item) => {
           return (
             <div
-              className="w-auto h-auto rounded-xl border border-black"
+              className="w-auto h-auto rounded-xl shadow-2xl bg-white"
               key={item.id}
             >
               <img

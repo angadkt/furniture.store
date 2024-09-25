@@ -6,40 +6,7 @@
       "email": "angadktofficial@gmail.com",
       "password": "12345678",
       "confirmPassword": "12345678",
-      "cart": [
-        {
-          "id": "8",
-          "name": "Hybrid Mattress",
-          "category": "Mattresses",
-          "image": "https://i.pinimg.com/564x/8a/74/36/8a743606903128baa00dc2e40f94384d.jpg ",
-          "details": "A blend of memory foam and innerspring for comfort and support.",
-          "price": 1099.99
-        },
-        {
-          "id": "19",
-          "name": "Aluminium Non Stick Mould",
-          "category": "Home Kitchen",
-          "image": "https://ii1.pepperfry.com/media/catalog/product/a/l/494x544/aluminium-non-stick-microwave-safe-large-round-shape-cake-mold-aluminium-non-stick-microwave-safe-la-mq2ntg.jpg",
-          "details": "Durable stainless steel cookware set with non-stick coating.",
-          "price": 249.99
-        },
-        {
-          "id": "13",
-          "name": "Wooden Dining Table Set",
-          "category": "Dining",
-          "image": "https://m.media-amazon.com/images/I/71OvjUoWWIL._SX679_.jpg",
-          "details": "A classic wooden dining table with six matching chairs.",
-          "price": 1200
-        },
-        {
-          "id": "25",
-          "name": "LED Desk Lamp",
-          "category": "Lamps & Lighting",
-          "image": "https://m.media-amazon.com/images/I/617jZZZhr3S._SX679_.jpg",
-          "details": "Sleek LED desk lamp with touch control and dimmable settings.",
-          "price": 59.99
-        }
-      ]
+      "cart": []
     },
     {
       "id": "ae8b",
@@ -74,44 +41,55 @@
       "username": "ttttt",
       "email": "sasimon23@gmail.com",
       "password": "0987654321",
-      "confirmPassword": "0987654321"
+      "confirmPassword": "0987654321",
+      "cart": [
+        {
+          "id": "2",
+          "name": "Leather Recliner",
+          "category": "Sofa & Seating",
+          "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
+          "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
+          "price": 799.99,
+          "quantity": 1
+        }
+      ]
     }
   ],
   "categories": [
     {
       "id": "1",
       "name": "All Products",
-      "image": "../src/assets/categories/sofa2.jpg",
+      "image": "../src/assets/categories/group_1.png",
       "link": "/allproducts"
     },
     {
       "id": "2",
       "name": "Sofa & Seating",
-      "image": "../src/assets/categories/sofa2.jpg",
+      "image": "https://i.pinimg.com/736x/19/0a/4d/190a4d6e0702c1dbc43cddbe86e3b62c.jpg",
       "link": "/sofa"
     },
     {
       "id": "3",
       "name": "Mattresses ",
-      "image": "../src/assets/categories/sofa2.jpg",
+      "image": "https://images-cdn.ubuy.co.in/65f54dedd16f35609536381e-2-inch-twin-cooling-gel-infused-mattress.jpg",
       "link": "/matresses"
     },
     {
       "id": "4",
       "name": "Home & Kitchen",
-      "image": "../src/assets/categories/sofa2.jpg",
+      "image": "https://ii1.pepperfry.com/media/catalog/product/a/l/494x544/aluminium-non-stick-microwave-safe-large-round-shape-cake-mold-aluminium-non-stick-microwave-safe-la-mq2ntg.jpg",
       "link": "/kitchen"
     },
     {
       "id": "5",
       "name": "Dining",
-      "image": "../src/assets/categories/sofa2.jpg",
+      "image": "https://i.pinimg.com/736x/59/e9/a0/59e9a057ae420f03af25c7b9452063e4.jpg",
       "link": "/dining"
     },
     {
       "id": "6",
       "name": "Lamps & Lighting",
-      "image": "../src/assets/categories/sofa2.jpg",
+      "image": "https://i.pinimg.com/236x/2f/f6/45/2ff6454b51a310d6a6a76dd3221b8be8.jpg",
       "link": "/lampLighting"
     }
   ],
@@ -122,7 +100,8 @@
       "category": "Sofa & Seating",
       "image": "https://img.freepik.com/premium-photo/white-leather-couch-with-wooden-leg-wooden-leg_824582-3276.jpg?w=740",
       "details": "A stylish and comfortable modern sofa, perfect for your living room.",
-      "price": 499.99
+      "price": 499.99,
+      "quantity": 1
     },
     {
       "id": "2",
@@ -130,7 +109,8 @@
       "category": "Sofa & Seating",
       "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
       "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
-      "price": 799.99
+      "price": 799.99,
+      "quantity": 1
     },
     {
       "id": "3",
@@ -138,7 +118,8 @@
       "category": "Sofa & Seating",
       "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
       "details": "Spacious L-shaped sectional sofa, ideal for large families.",
-      "price": 1199.99
+      "price": 1199.9,
+      "quantity": 19
     },
     {
       "id": "4",
@@ -146,7 +127,8 @@
       "category": "Sofa & Seating",
       "image": "https://i.pinimg.com/736x/87/49/71/874971ef6cd3ca41e0677aad333f6745.jpg",
       "details": "Compact and cozy loveseat sofa, perfect for small apartments.",
-      "price": 349.99
+      "price": 349.99,
+      "quantity": 1
     },
     {
       "id": "5",
@@ -154,7 +136,8 @@
       "category": "Sofa & Seating",
       "image": "https://i.pinimg.com/564x/cc/da/73/ccda73055b2f5de07c84f887113f70ea.jpg",
       "details": "Elegant chaise lounge with soft cushions, perfect for relaxation.",
-      "price": 599.99
+      "price": 599.99,
+      "quantity": 1
     },
     {
       "id": "6",
@@ -162,7 +145,8 @@
       "category": "Sofa & Seating",
       "image": "https://i.pinimg.com/736x/51/ca/ce/51cacefddb5d32d7f54957fe2bf13974.jpg",
       "details": "Comfortable reclining sofa with a built-in console for drinks.",
-      "price": 899.99
+      "price": 899.99,
+      "quantity": 1
     },
     {
       "id": "7",
@@ -170,7 +154,8 @@
       "category": "Mattresses",
       "image": "https://ii1.pepperfry.com/media/catalog/product/o/r/494x544/original-orthopaedic-memory-foam-10-inch-king-size-mattress-by-loom---needles-original-orthopaedic-m-ea4txg.jpg",
       "details": "A queen-sized memory foam mattress with cooling technology for a restful sleep.",
-      "price": 899.99
+      "price": 899.99,
+      "quantity": 1
     },
     {
       "id": "8",
@@ -178,7 +163,8 @@
       "category": "Mattresses",
       "image": "https://i.pinimg.com/564x/8a/74/36/8a743606903128baa00dc2e40f94384d.jpg ",
       "details": "A blend of memory foam and innerspring for comfort and support.",
-      "price": 1099.99
+      "price": 1099.9,
+      "quantity": 19
     },
     {
       "id": "9",
@@ -186,7 +172,8 @@
       "category": "Mattresses",
       "image": "https://i.pinimg.com/736x/ef/53/cb/ef53cb088c8a7fa6b29e3dba36967330.jpg",
       "details": "Specially designed orthopedic mattress for back pain relief.",
-      "price": 799.99
+      "price": 799.99,
+      "quantity": 1
     },
     {
       "id": "10",
@@ -194,7 +181,8 @@
       "category": "Mattresses",
       "image": "https://images-cdn.ubuy.co.in/65f54dedd16f35609536381e-2-inch-twin-cooling-gel-infused-mattress.jpg",
       "details": "Gel-infused foam mattress that stays cool all night long.",
-      "price": 999.99
+      "price": 999.99,
+      "quantity": 1
     },
     {
       "id": "11",
@@ -202,7 +190,8 @@
       "category": "Mattresses",
       "image": "https://ii1.pepperfry.com/media/catalog/product/t/r/1100x1210/tru-spring-orthopedic-bonnell-spring-single-size-mattress-tru-spring-orthopedic-bonnell-spring-singl-4qve8t.jpg ",
       "details": "Classic innerspring mattress with firm support and durability.",
-      "price": 599.99
+      "price": 599.99,
+      "quantity": 1
     },
     {
       "id": "12",
@@ -210,7 +199,8 @@
       "category": "Mattresses",
       "image": "https://ii1.pepperfry.com/media/catalog/product/z/e/1100x1210/zenimo-pillow-top-8-inch-pocketed-spring-single-size-mattress--with-1-free-pillow--zenimo-pillow-top-15hw8a.jpg",
       "details": "Extra plush pillow top mattress for added comfort and luxury.",
-      "price": 1199.99
+      "price": 1199.9,
+      "quantity": 19
     },
     {
       "id": "13",
@@ -218,7 +208,8 @@
       "category": "Dining",
       "image": "https://m.media-amazon.com/images/I/71OvjUoWWIL._SX679_.jpg",
       "details": "A classic wooden dining table with six matching chairs.",
-      "price": 1200
+      "price": 1200,
+      "quantity": 1
     },
     {
       "id": "14",
@@ -226,7 +217,8 @@
       "category": "Dining",
       "image": "https://ii1.pepperfry.com/media/catalog/product/s/t/1100x1210/stem-glass-4-seater-dining-table-in-transparent-colour-stem-glass-4-seater-dining-table-in-transpare-fyi4nz.jpg",
       "details": "A sleek glass-top dining table with chrome-finish legs.",
-      "price": 899.99
+      "price": 899.99,
+      "quantity": 1
     },
     {
       "id": "15",
@@ -234,7 +226,8 @@
       "category": "Dining",
       "image": "https://ii1.pepperfry.com/media/catalog/product/t/a/1100x1210/tappered-vitrified-tile-6-seater-dining-table-in-teak-wood-tappered-vitrified-tile-6-seater-dining-t-fzzv3i.jpg",
       "details": "Elegant round marble dining table with gold accents.",
-      "price": 1499.99
+      "price": 1499.9,
+      "quantity": 19
     },
     {
       "id": "16",
@@ -242,7 +235,8 @@
       "category": "Dining",
       "image": "https://ii1.pepperfry.com/media/catalog/product/e/x/1100x1210/extend-8-seater-dining-table-in-khaki-colour-extend-8-seater-dining-table-in-khaki-colour-2y6huj.jpg",
       "details": "Extendable dining table with space-saving design.",
-      "price": 1099.99
+      "price": 1099.9,
+      "quantity": 19
     },
     {
       "id": "17",
@@ -250,7 +244,8 @@
       "category": "Dining",
       "image": "https://ii1.pepperfry.com/media/catalog/product/l/e/1100x1210/lethbridge-mango-wood-4-seater-dining-set-with-4-stools-in-scratch-resistant-rustic-teak-finish-leth-trmgae.jpg",
       "details": "Rustic farmhouse dining set with a sturdy wooden finish.",
-      "price": 799.99
+      "price": 799.99,
+      "quantity": 1
     },
     {
       "id": "18",
@@ -258,7 +253,8 @@
       "category": "Dining",
       "image": "https://m.media-amazon.com/images/I/71g6hxVZG5L._SX679_.jpg",
       "details": "Compact high-top dining set perfect for small spaces.",
-      "price": 599.99
+      "price": 599.99,
+      "quantity": 1
     },
     {
       "id": "19",
@@ -266,7 +262,8 @@
       "category": "Home Kitchen",
       "image": "https://ii1.pepperfry.com/media/catalog/product/a/l/494x544/aluminium-non-stick-microwave-safe-large-round-shape-cake-mold-aluminium-non-stick-microwave-safe-la-mq2ntg.jpg",
       "details": "Durable stainless steel cookware set with non-stick coating.",
-      "price": 249.99
+      "price": 249.99,
+      "quantity": 1
     },
     {
       "id": "20",
@@ -274,7 +271,8 @@
       "category": "Home Kitchen",
       "image": "https://ii1.pepperfry.com/media/catalog/product/s/i/494x544/silver-stainless-steel-fry-pan-by-circulon-silver-stainless-steel-fry-pan-by-circulon-kjw22r.jpg",
       "details": "High-quality non-stick frying pan, ideal for everyday cooking.",
-      "price": 49.99
+      "price": 49.99,
+      "quantity": 1
     },
     {
       "id": "21",
@@ -282,7 +280,8 @@
       "category": "Home Kitchen",
       "image": "https://m.media-amazon.com/images/I/51Q11RNy8dL._SX679_.jpg",
       "details": "Fast-boiling electric kettle with auto shut-off feature.",
-      "price": 39.99
+      "price": 39.99,
+      "quantity": 1
     },
     {
       "id": "22",
@@ -290,15 +289,17 @@
       "category": "Home Kitchen",
       "image": "https://m.media-amazon.com/images/I/41rGc4zWVVL._SX300_SY300_QL70_FMwebp_.jpg",
       "details": "Stylish 16-piece ceramic dinnerware set, perfect for any occasion.",
-      "price": 89.99
+      "price": 89.99,
+      "quantity": 1
     },
     {
       "id": "23",
-      "name": "Blender & Food Processor Combo",
+      "name": "Blender & Food Processor ",
       "category": "Home Kitchen",
       "image": "https://m.media-amazon.com/images/I/61nybQmQXkL._SX679_.jpg",
       "details": "Multifunctional blender and food processor for smoothies and meal prep.",
-      "price": 149.99
+      "price": 149.99,
+      "quantity": 1
     },
     {
       "id": "24",
@@ -306,7 +307,8 @@
       "category": "Lamps & Lighting",
       "image": "https://m.media-amazon.com/images/I/513AaGnzilL._SY445_SX342_QL70_FMwebp_.jpg",
       "details": "Modern ceiling pendant lamp with adjustable cord for kitchen or dining area.",
-      "price": 199.99
+      "price": 199.99,
+      "quantity": 1
     },
     {
       "id": "25",
@@ -314,7 +316,8 @@
       "category": "Lamps & Lighting",
       "image": "https://m.media-amazon.com/images/I/617jZZZhr3S._SX679_.jpg",
       "details": "Sleek LED desk lamp with touch control and dimmable settings.",
-      "price": 59.99
+      "price": 59.99,
+      "quantity": 1
     },
     {
       "id": "26",
@@ -322,7 +325,8 @@
       "category": "Lamps & Lighting",
       "image": "https://i.pinimg.com/564x/18/09/da/1809da5a729196286f5669c1e68875c2.jpg",
       "details": "Luxurious chandelier with crystal accents, perfect for living or dining rooms.",
-      "price": 499.99
+      "price": 499.99,
+      "quantity": 1
     },
     {
       "id": "27",
@@ -330,7 +334,8 @@
       "category": "Lamps & Lighting",
       "image": "https://i.pinimg.com/736x/32/58/b0/3258b08823a60b7fbb7cb0fec6e25b80.jpg",
       "details": "Contemporary floor lamp with an adjustable arm and soft lighting.",
-      "price": 129.99
+      "price": 129.99,
+      "quantity": 1
     },
     {
       "id": "28",
@@ -338,7 +343,8 @@
       "category": "Lamps & Lighting",
       "image": "https://i.pinimg.com/736x/00/b1/4d/00b14dea7ebefeab51c18e729e476c6e.jpg",
       "details": "Minimalist wall sconce with warm LED lighting, ideal for hallways and bedrooms.",
-      "price": 79.99
+      "price": 79.99,
+      "quantity": 1
     }
   ]
 }

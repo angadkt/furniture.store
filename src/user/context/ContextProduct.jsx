@@ -8,6 +8,20 @@ const ContextProduct = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
   const [cart, setCart] = useState([]);
+  const [quantity, setQuantity] = useState(1);
+  
+
+
+
+  // =======================================  search onChange function =========================================================
+
+  const handleSearchChange = (e) => {
+      setSearch(e.target.value);
+  }
+
+
+
+  
 
   // =========================================== user data ===============================================================
 
@@ -39,45 +53,6 @@ const ContextProduct = ({ children }) => {
   // ====================================  handle Add to cart=======================================================
 
   const iD = localStorage.getItem("id");
-//   const {id, name, price} = element;
-//   const handleAddToCart = (element) => {
-//     if (!iD) {
-//       alert("please login");
-//       // console.log(iD);
-//     } else {
-//         console.log('logged in',iD);
-        
-//       let isPresent = false;
-//       cart.forEach((item) => {
-//         if (item.id === element.id) {
-//           // console.log(`item`,item);
-
-//           isPresent = true;
-//           // alert('item already added')
-//         }
-//       });
-
-//       if (isPresent) {
-//         alert("item already added");
-//       } else {
-//         axios
-//           .patch(`http://localhost:5999/users/${iD}`, {
-//             cart: [...cart, element],
-//           })
-//           .then((res) => {
-//             console.log(res);
-//             setCart([...cart, element]);
-//             alert("item added to the cart");
-
-//             // alert('item added to the cart')
-//             // console.log('wht the fuck is happening');
-//           })
-//           .catch((err) => {
-//             console.log(err);
-//           });
-//       }
-//     }
-//   };
 
 const handleAddToCart = (elem) =>{
     if(!iD){
@@ -88,18 +63,13 @@ const handleAddToCart = (elem) =>{
         if(isPresent){
             alert('item already added');
         }else{
-            // const sanitizedElem = {
-            //     id: elem.id,
-            //     name: elem.name, 
-            //     image: elem.image,
-            //     price: elem.price
-            // };
             axios.patch(`http://localhost:5999/users/${iD}`, {
                 cart: [...cart, elem],
             })
            .then((res)=>{
             console.log("cart added to db", res.data);
             setCart([...cart, elem]);
+            
             alert('cart added successfully');
            })
            .catch((err)=>{
@@ -109,8 +79,56 @@ const handleAddToCart = (elem) =>{
     }
 }
 
+
+const handleRemoveCart = (item)=> {
+    const newCart = cart.filter((x)=>{
+      return x.id !== item.id;
+    })
+    axios.patch(`http://localhost:5999/users/${iD}`, {
+      "cart": newCart,
+    })
+    setCart(newCart);
+}
+
+
+
+
+
+// =================== quantity ==============================
+
+
+const increment = ()=>{
+  setQuantity( q => q+1);
+  axios.patch(`http://localhost:5999/users/${iD}`,{
+    "quantity" : setQuantity(quantity)
+  })
+  
+}
+
+const decrement = ()=>{
+  if(quantity > 0){
+
+    setQuantity( q => q-1);
+  }else{
+    handleRemoveCart();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+// ==============================================================
+
   return (
-    <context_page.Provider value={{ products, users, handleAddToCart , cart , setCart }}>
+    <context_page.Provider 
+    value={{ products, users, handleAddToCart , cart , setCart, handleRemoveCart , increment , decrement , quantity  }}>
       {children}
     </context_page.Provider>
   );

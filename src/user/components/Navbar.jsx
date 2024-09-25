@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import {  NavLink, Outlet } from 'react-router-dom'
 import { MdMenu } from "react-icons/md";
 import MobileNav from './MobileNav';
 import { FaOpencart } from "react-icons/fa";
 import { context_page } from '../context/ContextProduct';
+import { input } from 'framer-motion/client';
 
 
 const Navbar = () => {
@@ -11,8 +12,7 @@ const Navbar = () => {
     const [mobView, setMobView] = useState(false)
     const { users } = useContext(context_page);
 
-
-
+    
 
 
 
@@ -26,7 +26,7 @@ const Navbar = () => {
     const Links = [
         { name: 'Home', link: '/' },
         { name: 'Profile', link: '/profile' },
-        { name: 'Search', link: '/search' },
+        // { name: input>, link: '/search' },
         { name: <div className='flex '>Cart <FaOpencart size={26}/></div>, link: '/cart' },
     ]
 
@@ -35,7 +35,9 @@ const Navbar = () => {
         localStorage.removeItem('id');
     }
 
-    // ===========================================================
+    // =============================  ==============================
+
+    
 
 
 
@@ -50,13 +52,18 @@ const Navbar = () => {
                 <div className='md:flex-1  flex items-center w-full  justify-between'>
                     <span className='md:ml-16 ml-8 md:text-4xl text-2xl'>Urban Oak</span>
                     <div className=' md:hidden'>
-                        <button className='mr-8 text-4xl' onClick={() => setMobView(!mobView)}>
+                        <button className='mr-8 text-4xl' onClick={() => setMobView(!mobView)
+                        }>
+                            {
+                                console.log(mobView)
+                                
+                            }
                             <MdMenu />
                         </button>
                     </div> 
                 </div>
                 <div className='flex-1  md:flex justify-center items-center hidden'>
-                    <ul className='flex flex-wrap gap-6 text-lg'>
+                    <ul className='flex flex-wrap gap-4 text-lg'>
                         {
                             Links.map((x, i) => (
                                 <NavLink key={i} to={x.link}>
@@ -93,7 +100,7 @@ const Navbar = () => {
             </div>)
                 }
             </nav>
-            <MobileNav mobView={mobView}/>
+            <MobileNav mobView={mobView} setMobView={setMobView}/>
             <Outlet />
         </>
     )
