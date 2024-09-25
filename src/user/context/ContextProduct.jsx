@@ -99,18 +99,36 @@ const handleRemoveCart = (item)=> {
 
 const increment = ()=>{
   setQuantity( q => q+1);
-  axios.patch(`http://localhost:5999/users/${iD}`,{
-    "quantity" : setQuantity(quantity)
+    // axios.patch(`http://localhost:5999/users/${iD}`,{
+    //   "quantity" : quantity
+    // })
+    // .then((res)=>(
+    //   console.log("quantity updated", res.data)
+    // ))
+    // .catch((err)=>console.log("error in updating quantity", err))
+  axios.patch(`http://localhost:5999/users/${iD}/cart`,{
+    "quantity" : quantity
   })
+  .then((res)=>(
+      console.log("quantity updated", res.data)
+    ))
+    .catch((err)=>console.log("error in updating quantity", err))
   
 }
 
 const decrement = ()=>{
   if(quantity > 0){
-
     setQuantity( q => q-1);
-  }else{
-    handleRemoveCart();
+  //   axios.patch(`http://localhost:5999/users/${iD}`,{
+  //     "quantity" : quantity
+  //   })
+  //   .then((res)=>(
+  //     console.log("quantity updated", res.data)
+  //   ))
+  //   .catch((err)=>console.log("error in updating quantity", err))
+  // }
+  // else if(quantity == 0){
+  //   setCart()
   }
 }
 
@@ -134,4 +152,4 @@ const decrement = ()=>{
   );
 };
 
-export default ContextProduct;
+export default ContextProduct

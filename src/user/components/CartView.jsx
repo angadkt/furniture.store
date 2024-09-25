@@ -21,7 +21,7 @@ const CartView = () => {
     }
   }, []);
 
-  const totalPrize = cart.reduce((acc, element) => acc + element.price, 0);
+  const totalPrize = cart.reduce((acc, element) => acc + (element.price), 0);
 
   if (!cart) {
     return (
@@ -59,14 +59,14 @@ const CartView = () => {
             <span>Qty: &nbsp;</span>
             <button
               className="rounded-lg border-4 px-2"
-              onClick={() => increment(item.quantity)}
+              onClick={() => increment(item.id)}
             >
               +
             </button>
             <span className="m-2 ">{quantity}</span>
             <button
               className="rounded-lg border-4 px-2"
-              onClick={() => decrement(item.quantity)}
+              onClick={() => decrement(item.id)}
             >
               -
             </button>

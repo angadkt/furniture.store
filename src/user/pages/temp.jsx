@@ -27,6 +27,10 @@ const AllProducts = () => {
 
     {/* </div> */}
     {/* <div className='h-screen bg-blue-600 w-full mt-20'><h1>Products</h1></div> */}
+
+
+
+    
     </div>
   )
 }

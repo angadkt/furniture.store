@@ -33,6 +33,8 @@ const Navbar = () => {
 // ======================== sign out function ===================================
     const handleSignOut = () => {
         localStorage.removeItem('id');
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
     }
 
     // =============================  ==============================
