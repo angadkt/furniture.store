@@ -19,7 +19,7 @@ const Sofa = () => {
         {sofaSeating.map((item) => {
           return (
             <div
-              className="w-auto h-auto rounded-xl  shadow-2xl bg-white"
+              className="w-auto h-auto rounded-xl  shadow-2xl bg-white hover:scale-x-105 hover:scale-105 hover:duration-150"
               key={item.id}
             >
               <img
@@ -28,7 +28,7 @@ const Sofa = () => {
                 alt={item.name}
               />
               <div className="mt-4 ml-4 mb-2">
-                <h1 className="text-xl font-semiboldx">{item.name}</h1>
+                <h1 className="text-xl font-semibold">{item.name}</h1>
                 <h1>
                   {item.price}
                   {console.log("mapped")}

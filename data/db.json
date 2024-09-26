@@ -14,7 +14,7 @@
           "image": "https://img.freepik.com/premium-photo/white-leather-couch-with-wooden-leg-wooden-leg_824582-3276.jpg?w=740",
           "details": "A stylish and comfortable modern sofa, perfect for your living room.",
           "price": 499.99,
-          "quantity": 1
+          "quantity": 15
         }
       ]
     },
@@ -341,7 +341,7 @@
     },
     {
       "id": "27",
-      "name": "Floor Lamp with Adjustable Arm",
+      "name": "Floor Lamp with Adjustable",
       "category": "Lamps & Lighting",
       "image": "https://i.pinimg.com/736x/32/58/b0/3258b08823a60b7fbb7cb0fec6e25b80.jpg",
       "details": "Contemporary floor lamp with an adjustable arm and soft lighting.",

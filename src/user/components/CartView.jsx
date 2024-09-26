@@ -19,9 +19,10 @@ const CartView = () => {
         .get(`http://localhost:5999/users/${iD}`)
         .then((res) => setCart(res.data.cart));
     }
-  }, []);
+  }, [cart]);
 
   const totalPrize = cart.reduce((acc, element) => acc + (element.price), 0);
+  const updatedTotalPrice = Math.floor(cart.reduce((acc, element) => acc + (element.price * element.quantity), 0));
 
   if (!cart) {
     return (
@@ -59,14 +60,14 @@ const CartView = () => {
             <span>Qty: &nbsp;</span>
             <button
               className="rounded-lg border-4 px-2"
-              onClick={() => increment(item.id)}
+              onClick={() => increment(item,1)}
             >
               +
             </button>
-            <span className="m-2 ">{quantity}</span>
+            <span className="m-2 ">{item.quantity}</span>
             <button
               className="rounded-lg border-4 px-2"
-              onClick={() => decrement(item.id)}
+              onClick={() => increment(item,-1)}
             >
               -
             </button>
@@ -79,7 +80,7 @@ const CartView = () => {
         <div className=" bg-customDarkPurple flex justify-center gap-10  mx-16 p-3 rounded-lg shadow-2xl">
           <h1 className="text-bold">
             TOTAL PRICE :{" "}
-            <span className="text-red-500">{Math.floor(totalPrize)}</span>
+            <span className="text-red-500">{updatedTotalPrice} /-</span>
           </h1>
           <button
             onClick={() => navigate("/payment")}

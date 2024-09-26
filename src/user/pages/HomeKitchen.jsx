@@ -16,9 +16,9 @@ const HomeKitchen = () => {
       <div className="w-full h-full     flex flex-wrap gap-5 justify-center ">
         {homeKitch.map((item) => {
           return(
-            <div className="w-auto h-auto rounded-xl shadow-2xl bg-white"
+            <div className="w-auto h-auto rounded-xl shadow-2xl bg-white hover:scale-x-105 hover:scale-105 hover:duration-150"
              key={item.id}>
-            <img className="w-68 h-72 rounded-xl" src={item.image} alt={item.name} />
+            <img className="w-72 h-72 rounded-xl p-3" src={item.image} alt={item.name} />
             <div className="mt-4 ml-4 mb-2">
               <h1 className="text-xl font-semiboldx">{item.name}</h1>
               <h1>

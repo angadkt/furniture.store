@@ -19,7 +19,7 @@ const SearchBar = () => {
 
   return (
     <div className="mt-20 flex justify-center">
-      {/* <input
+      <input
         className="border border-black px-4 py-1 rounded-lg"
         type="search"
         value={search}
@@ -42,7 +42,7 @@ const SearchBar = () => {
         ) : (
           <p>No products found</p>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };

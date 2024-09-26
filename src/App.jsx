@@ -18,6 +18,7 @@ import LampsLighting from "./user/pages/LampsLighting";
 import ProductDetails from "./user/components/ProductDetails";
 import CartView from "./user/components/CartView";
 import PaymentPage from "./user/pages/PaymentPage";
+import Footer from "./user/components/Footer";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/signup" element={<RegistrationForm />} />
           <Route path="/signin" element={<SignIn />} />
         </Routes>
+        <Footer />
       </ContextProduct>
     </div>
   );

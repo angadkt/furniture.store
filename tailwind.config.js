@@ -9,6 +9,8 @@ export default {
       colors: {
         customLigthPurple: '#F2EFFB',
         customDarkPurple: '#e1d8fc',
+        customLightYellow: '#e0b852',
+        customCardColor: '#F5F5F7',
       },
     },
   },

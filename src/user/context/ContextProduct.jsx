@@ -13,12 +13,16 @@ const ContextProduct = ({ children }) => {
 
 
 
-  // =======================================  search onChange function =========================================================
+  
 
-  const handleSearchChange = (e) => {
-      setSearch(e.target.value);
-  }
 
+  
+
+
+
+
+
+  
 
 
   
@@ -67,7 +71,7 @@ const handleAddToCart = (elem) =>{
                 cart: [...cart, elem],
             })
            .then((res)=>{
-            console.log("cart added to db", res.data);
+            // console.log("cart added to db");
             setCart([...cart, elem]);
             
             alert('cart added successfully');
@@ -97,23 +101,34 @@ const handleRemoveCart = (item)=> {
 // =================== quantity ==============================
 
 
-const increment = ()=>{
-  setQuantity( q => q+1);
-    // axios.patch(`http://localhost:5999/users/${iD}`,{
-    //   "quantity" : quantity
-    // })
-    // .then((res)=>(
-    //   console.log("quantity updated", res.data)
-    // ))
-    // .catch((err)=>console.log("error in updating quantity", err))
-  axios.patch(`http://localhost:5999/users/${iD}/cart`,{
-    "quantity" : quantity
-  })
-  .then((res)=>(
-      console.log("quantity updated", res.data)
-    ))
-    .catch((err)=>console.log("error in updating quantity", err))
-  
+const increment = (cartItem,num)=>{
+  if(num === -1 && cartItem.quantity === 1 ) return alert("fuck");
+  if(cartItem.quantity >=1){
+    const newCart = (prevCart) =>{
+      let flag =  prevCart.findIndex((item)=> item.id === cartItem.id)
+      if(flag >= 0){
+        prevCart[flag] = {
+          ...prevCart[flag],
+          quantity: prevCart[flag].quantity + num
+        }
+        return prevCart
+      }
+      }
+    
+      const updateCart = newCart(cart)
+      setCart(updateCart);
+    
+      axios.patch(`http://localhost:5999/users/${iD}`,{
+        cart : updateCart
+      })
+      .then((res)=>console.log('done' , res.data))
+      .catch((err)=> console.log(err)
+      )
+
+  }else{
+    alert("quantity cant be zero")
+  }
+
 }
 
 const decrement = ()=>{
@@ -146,7 +161,7 @@ const decrement = ()=>{
 
   return (
     <context_page.Provider 
-    value={{ products, users, handleAddToCart , cart , setCart, handleRemoveCart , increment , decrement , quantity  }}>
+    value={{ products, users, handleAddToCart , cart , setCart, handleRemoveCart , increment , decrement , quantity }}>
       {children}
     </context_page.Provider>
   );

@@ -19,11 +19,11 @@ const Dining = () => {
         {diningProducts.map((item) => {
           return (
             <div
-              className="w-auto h-auto rounded-xl shadow-2xl bg-white"
+              className="w-auto h-auto rounded-xl shadow-2xl bg-white hover:scale-x-105 hover:scale-105 hover:duration-150"
               key={item.id}
             >
               <img
-                className="w-68 h-72 rounded-xl"
+                className="w-72 h-72 rounded-xl p-3"
                 src={item.image}
                 alt={item.name}
               />

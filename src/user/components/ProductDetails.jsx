@@ -15,7 +15,7 @@ const ProductDetails = () => {
         {productDetail.map((item) => (
           <div className="shadow-2xl w-3/4 mt-10 p-5 rounded-xl">
             <div className="flex items-center">
-              <div>
+              <div className="mr-5">
                 <img className="w-[400px]" src={item.image} alt={item.name} />
               </div>
               <div className="flex flex-col gap-1">

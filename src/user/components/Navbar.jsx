@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import {  NavLink, Outlet } from 'react-router-dom'
+import {  Link, NavLink, Outlet } from 'react-router-dom'
 import { MdMenu } from "react-icons/md";
 import MobileNav from './MobileNav';
 import { FaOpencart } from "react-icons/fa";
 import { context_page } from '../context/ContextProduct';
-import { input } from 'framer-motion/client';
+import { FaRegUserCircle } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
 
     const Links = [
         { name: 'Home', link: '/' },
-        { name: 'Profile', link: '/profile' },
+        { name: 'Shop', link: '/allproducts' },
         // { name: input>, link: '/search' },
         { name: <div className='flex '>Cart <FaOpencart size={26}/></div>, link: '/cart' },
     ]
@@ -56,10 +56,10 @@ const Navbar = () => {
                     <div className=' md:hidden'>
                         <button className='mr-8 text-4xl' onClick={() => setMobView(!mobView)
                         }>
-                            {
+                            {/* {
                                 console.log(mobView)
                                 
-                            }
+                            } */}   
                             <MdMenu />
                         </button>
                     </div> 
@@ -77,14 +77,18 @@ const Navbar = () => {
                 </div>
                 {
                     currentUser ? ( <div className='flex-1 md:flex justify-end items-center hidden'>
-                    <span className='mr-16 '>
+                    <span className='mr-16 flex gap-3 items-center'>
                         <NavLink to='/signin'>
                             <button className='bg-slate-300 py-2 px-4 rounded-lg  hover:bg-slate-500 hover:text-white'
                             onClick={handleSignOut}>
                                 Sign Out
                             </button>
                         </NavLink>
+                        <Link to='/profile'>
+                        <FaRegUserCircle size={30} />
+                        </Link>
                     </span>
+                    
                 </div> ) : (
                 <div className='flex-1 md:flex justify-end items-center hidden'>
                 <span className='mr-16 '>
