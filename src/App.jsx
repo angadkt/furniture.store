@@ -9,20 +9,17 @@ import Profile from "./user/components/Profile";
 import CategorySection from "./user/components/CategorySection";
 import AllProducts from "./user/pages/AllProducts";
 import ContextProduct from "./user/context/ContextProduct";
-import Sofa from "./user/pages/Sofa";
 import React from "react";
-import Matresses from "./user/pages/Matresses";
-import HomeKitchen from "./user/pages/HomeKitchen";
-import Dining from "./user/pages/Dining";
-import LampsLighting from "./user/pages/LampsLighting";
-import ProductDetails from "./user/components/ProductDetails";
 import CartView from "./user/components/CartView";
 import PaymentPage from "./user/pages/PaymentPage";
 import Footer from "./user/components/Footer";
+import PayForm from "./user/pages/PayForm";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <div>
+      <ToastContainer position="top-center"/>
       <ContextProduct>
         <Routes>
           <Route path="/" element={<Navbar />}>
@@ -30,16 +27,17 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/category" element={<CategorySection />} />
             <Route path="/allproducts" element={<AllProducts />} />
-            <Route path="/sofa" element={<Sofa />} />
+            {/* <Route path="/sofa" element={<Sofa />} />
             <Route path="/matresses" element={<Matresses />} />
             <Route path="/kitchen" element={<HomeKitchen />} />
             <Route path="/dining" element={<Dining />} />
             <Route path="/lampLighting" element={<LampsLighting />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/products/:id" element={<ProductDetails />} /> */}
             <Route path="/cart" element={<CartView />} />
-            <Route path="/payment" element={<PaymentPage />} />
           </Route>
 
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/paymentDetails" element={<PayForm />} />
           <Route path="/signup" element={<RegistrationForm />} />
           <Route path="/signin" element={<SignIn />} />
         </Routes>

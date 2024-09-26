@@ -14,7 +14,7 @@
           "image": "https://img.freepik.com/premium-photo/white-leather-couch-with-wooden-leg-wooden-leg_824582-3276.jpg?w=740",
           "details": "A stylish and comfortable modern sofa, perfect for your living room.",
           "price": 499.99,
-          "quantity": 15
+          "quantity": 5
         }
       ]
     },
@@ -81,7 +81,7 @@
     },
     {
       "id": "3",
-      "name": "Mattresses ",
+      "name": "Mattresses",
       "image": "https://images-cdn.ubuy.co.in/65f54dedd16f35609536381e-2-inch-twin-cooling-gel-infused-mattress.jpg",
       "link": "/matresses"
     },

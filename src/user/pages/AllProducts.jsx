@@ -1,44 +1,76 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { context_page } from "../context/ContextProduct";
-import { NavLink, useNavigate } from "react-router-dom";
+// import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const AllProducts = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { products, handleAddToCart } = useContext(context_page);
+
   const [search, setSearch] = useState("");
   const [searchProducts, setSearchProducts] = useState(products);
-
   const [categoriezedProduct, setCategorizedProduct] = useState(products);
+
   // const [sofa, setSofa] = useState([]);
   // const [mattresses, setMattresses] = useState([]);
   // const [homeKitchen, setHomeKitchen] = useState([]);
   // const [dining, setDining] = useState([]);
-  const [lampsLights, setLampsLights] = useState([]);
+  // const [lampsLights, setLampsLights] = useState([]);
+
+
+
+
+
+
+  // =============================== onCategoryHandle ===================================
+
+// const handleSofa = () => {
+//   const productFiltered = categoriezedProduct.filter((item) => item.category === "Sofa & Seating")
+//   setCategorizedProduct(productFiltered);
+//   console.log(categoriezedProduct);
+// };
+
+const handleCategory = (category) => {
+  if (category === "All Products") {
+    setCategorizedProduct(products);
+  }
+  else{
+    const productFiltered = products.filter((item) => item.category === category)
+  setCategorizedProduct(productFiltered);
+  console.log(categoriezedProduct);
+  }
+}
 
   // ==================================================================
   
   useEffect(() => {
     if (search) {
-      const filteredProducts = products.filter((item) =>
+      const filteredProducts = categoriezedProduct.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase())
     );
     setSearchProducts(filteredProducts);
   } else {
     setSearchProducts(categoriezedProduct);
   }
-  setCategorizedProduct(searchProducts);
-}, [search, products]);
+  // setCategorizedProduct(searchProducts);
+}, [search, categoriezedProduct]);
 
 
-// =============================== onCategoryHandle ===================================
+useEffect(()=>{
+  setCategorizedProduct(products);
+  setSearchProducts(products);
+}, [products])
+// ====================================================================
 
-const handleSofa = () => {
-  const productFiltered = products.filter((item) => item.category === "Sofa & Seating")
-  setCategorizedProduct(productFiltered);
-  console.log(categoriezedProduct);
-};
+useEffect(() => {
+  console.log("Updated category products: ", categoriezedProduct);
+}, [categoriezedProduct]);
+
+// Rendering section
+if (!products || products.length === 0) {
+  return <div>Loading products...</div>;
+}
 
 // ================================================
     
@@ -82,15 +114,28 @@ const handleSofa = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-10 my-5 flex justify-evenly">
-          <button className="active:bg-slate-400">ALL PRODUCTS</button>
-          <button onClick={handleSofa}>SOFA & SEATING</button>
-          <button>MATTRESSES</button>
-          <button>HOME & KITCHEN</button>
-          <button>DINING</button>
-          <button>LAMPS & LIGHTS</button>
+        <div className="w-full h-10 my-5 flex justify-evenly font-semibold  ">
+          <button 
+          className="focus:border-b focus:border-black"
+          onClick={()=>handleCategory("All Products")} >ALL PRODUCTS</button>
+          {/* // onClick={navigate('/')} >ALL PRODUCTS</button> */}
+          <button 
+          className="focus:border-b focus:border-black"
+          onClick={()=>handleCategory("Sofa & Seating")}>SOFA & SEATING</button>
+          <button 
+          className="focus:border-b focus:border-black"
+          onClick={()=>handleCategory("Mattresses")}>MATTRESSES</button>
+          <button 
+          className="focus:border-b focus:border-black"
+          onClick={()=>handleCategory("Dining")}>HOME & KITCHEN</button>
+          <button 
+          className="focus:border-b focus:border-black"
+          onClick={()=>handleCategory("Home Kitchen")}>DINING</button>
+          <button 
+          className="focus:border-b focus:border-black"
+          onClick={()=>handleCategory("Lamps & Lighting")}>LAMPS & LIGHTS</button>
         </div>
-        <div className="w-full h-full flex justify-center flex-wrap gap-5">
+        <div className="w-full h-full flex justify-center flex-wrap gap-10">
           {categoriezedProduct.length > 0
             ? searchProducts.map((item) => (
                 <div

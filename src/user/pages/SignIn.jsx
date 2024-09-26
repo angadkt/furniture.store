@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { context_page } from "../context/ContextProduct";
 
 const SignIn = () => {
@@ -47,7 +49,8 @@ const SignIn = () => {
         
         if(user.email === userDetails.email){
           if(user.password === userDetails.password) {
-            alert('login successful')
+            // alert('login successful')
+            toast.success("Login successful");
             navigate('/')
             localStorage.setItem('id', user.id)
             localStorage.setItem( 'username', user.username)
