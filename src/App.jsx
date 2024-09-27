@@ -15,6 +15,7 @@ import PaymentPage from "./user/pages/PaymentPage";
 import Footer from "./user/components/Footer";
 import PayForm from "./user/pages/PayForm";
 import { ToastContainer } from 'react-toastify';
+import AdminHome from "./admin/admin_Home/AdminHome";
 
 function App() {
   return (
@@ -27,12 +28,6 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/category" element={<CategorySection />} />
             <Route path="/allproducts" element={<AllProducts />} />
-            {/* <Route path="/sofa" element={<Sofa />} />
-            <Route path="/matresses" element={<Matresses />} />
-            <Route path="/kitchen" element={<HomeKitchen />} />
-            <Route path="/dining" element={<Dining />} />
-            <Route path="/lampLighting" element={<LampsLighting />} />
-            <Route path="/products/:id" element={<ProductDetails />} /> */}
             <Route path="/cart" element={<CartView />} />
           </Route>
 
@@ -40,8 +35,9 @@ function App() {
           <Route path="/paymentDetails" element={<PayForm />} />
           <Route path="/signup" element={<RegistrationForm />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/adminhome" element={<AdminHome />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </ContextProduct>
     </div>
   );

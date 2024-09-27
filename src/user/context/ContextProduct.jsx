@@ -9,8 +9,46 @@ const ContextProduct = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [orders, setOrders] = useState([]);
   
 
+
+
+
+
+
+
+
+  const iD = localStorage.getItem("id");  //globaly setting id in of the loggedin user to a variable for further use
+
+
+
+  // ==================================================== order ==============================================================
+
+    const cartItems  = [...orders, cart]
+
+    const handleAddToOrders = () =>{
+      console.log('log is working');
+      
+      if(!iD){
+        alert("you should login first") 
+      }else{
+          axios.patch(`http://localhost:5999/users/${iD}`,{
+            orders: cartItems,
+          })
+          .then((res)=>{
+            setOrders(cartItems)
+            setCart(null)
+            console.log("order added to database", orders); 
+          })
+          .catch((err)=>{
+            console.log("error adding order", err);
+          })
+          axios.patch(`http://localhost:5999/users/${iD}`, {
+            "cart": setCart(null)
+          })
+      }
+    }
 
 
   
@@ -56,7 +94,6 @@ const ContextProduct = ({ children }) => {
 
   // ====================================  handle Add to cart=======================================================
 
-  const iD = localStorage.getItem("id");
 
 const handleAddToCart = (elem) =>{
     if(!iD){
@@ -161,7 +198,7 @@ const decrement = ()=>{
 
   return (
     <context_page.Provider 
-    value={{ products, users, handleAddToCart , cart , setCart, handleRemoveCart , increment , decrement , quantity }}>
+    value={{ products, users, handleAddToCart , cart , setCart, handleRemoveCart , increment , decrement , quantity , handleAddToOrders }}>
       {children}
     </context_page.Provider>
   );

@@ -1,35 +1,20 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { context_page } from "../context/ContextProduct";
-// import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const AllProducts = () => {
-  // const navigate = useNavigate();
   const { products, handleAddToCart } = useContext(context_page);
 
   const [search, setSearch] = useState("");
   const [searchProducts, setSearchProducts] = useState(products);
   const [categoriezedProduct, setCategorizedProduct] = useState(products);
 
-  // const [sofa, setSofa] = useState([]);
-  // const [mattresses, setMattresses] = useState([]);
-  // const [homeKitchen, setHomeKitchen] = useState([]);
-  // const [dining, setDining] = useState([]);
-  // const [lampsLights, setLampsLights] = useState([]);
-
-
-
 
 
 
   // =============================== onCategoryHandle ===================================
 
-// const handleSofa = () => {
-//   const productFiltered = categoriezedProduct.filter((item) => item.category === "Sofa & Seating")
-//   setCategorizedProduct(productFiltered);
-//   console.log(categoriezedProduct);
-// };
 
 const handleCategory = (category) => {
   if (category === "All Products") {
@@ -42,7 +27,10 @@ const handleCategory = (category) => {
   }
 }
 
-  // ==================================================================
+
+
+
+  // ======================== search ==========================================
   
   useEffect(() => {
     if (search) {
@@ -78,12 +66,6 @@ if (!products || products.length === 0) {
     <div className="mt-20 bg-transparent">
       <div className="w-full h-full   md:px-16 px-8 mt-5">
         <div className="w-full flex justify-center">
-          {/* <input 
-        className='border px-4 py-1 rounded-lg border-black'
-        placeholder='search products here'
-        onChange={(e)=> setSearch(e.target.value)}
-        type="search" 
-        value={search} /> */}
           <div class="max-w-md mx-auto">
             <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-customCardColor overflow-hidden mt-5 ">
               <div class="grid place-items-center h-full w-12 text-gray-300">
@@ -118,7 +100,6 @@ if (!products || products.length === 0) {
           <button 
           className="focus:border-b focus:border-black"
           onClick={()=>handleCategory("All Products")} >ALL PRODUCTS</button>
-          {/* // onClick={navigate('/')} >ALL PRODUCTS</button> */}
           <button 
           className="focus:border-b focus:border-black"
           onClick={()=>handleCategory("Sofa & Seating")}>SOFA & SEATING</button>

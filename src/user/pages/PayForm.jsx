@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import Swal from 'sweetalert2';
+import { context_page } from '../context/ContextProduct';
 
 const PayForm = () => {
+  const {handleAddToOrders , cart} = useContext(context_page);
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <Formik
@@ -40,6 +42,8 @@ const PayForm = () => {
               });
             setSubmitting(false);
           }, 400);
+
+          //adding orders to the data base 
         }}
       >
         {({ isSubmitting }) => (
@@ -80,6 +84,7 @@ const PayForm = () => {
               type="submit"
               className="bg-blue-500 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-600 transition-all duration-300"
               disabled={isSubmitting}
+              onClick={()=>handleAddToOrders(cart)}
             >
               Pay Now
             </button>
