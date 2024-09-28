@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useContext } from "react";
 import { context_page } from "../context/ContextProduct";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AllProducts = () => {
   const { products, handleAddToCart } = useContext(context_page);
@@ -10,6 +11,7 @@ const AllProducts = () => {
   const [searchProducts, setSearchProducts] = useState(products);
   const [categoriezedProduct, setCategorizedProduct] = useState(products);
 
+  const navigate = useNavigate();
 
 
 

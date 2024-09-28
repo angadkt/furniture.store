@@ -8,15 +8,6 @@
       "confirmPassword": "12345678",
       "cart": [
         {
-          "id": "2",
-          "name": "Leather Recliner",
-          "category": "Sofa & Seating",
-          "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
-          "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
-          "price": 799.99,
-          "quantity": 2
-        },
-        {
           "id": "1",
           "name": "Modern Sofa",
           "category": "Sofa & Seating",
@@ -24,15 +15,6 @@
           "details": "A stylish and comfortable modern sofa, perfect for your living room.",
           "price": 499.99,
           "quantity": 1
-        },
-        {
-          "id": "3",
-          "name": "L-Shaped Sectional",
-          "category": "Sofa & Seating",
-          "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
-          "details": "Spacious L-shaped sectional sofa, ideal for large families.",
-          "price": 1199.9,
-          "quantity": 19
         }
       ],
       "orders": [

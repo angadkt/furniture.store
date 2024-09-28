@@ -21,12 +21,16 @@ const AdminHome = () => {
   }
 
   return (
-    <div className="h-screen w-full flex overflow-hidden">
-      <aside className=" w-60 h-full bg-customBgAdmin">
-        <div className=" w-full h-[17%] flex justify-center items-center bg-customBgAdmin">
+    <div className="h-[100%] w-[100%] flex">
+      <nav className=" w-60 h-[100% ] bg-customBgAdmin">
+
+        
+        <div className=" w-full h-40 flex justify-center items-center bg-customBgAdmin">
           <h1 className="text-cutomBlueAdmin font-bold text-3xl">Admin.</h1>
         </div>
-        <div className="bg-cutomBlueAdmin w-full h-[83%] rounded-tr-[90px]">
+
+
+        <div className="bg-cutomBlueAdmin w-60 h-full rounded-tr-[90px]">
           <div className="w-full  h-[50%] flex flex-wrap flex-col  pl-10 justify-center">
             <div className="flex flex-col gap-4 text-xl text-white font-semibold">
               <button onClick={()=>handlePageChange('dashboard')} className="flex items-center gap-2 focus:border">
@@ -48,16 +52,19 @@ const AdminHome = () => {
                 <span>Users</span>
               </button>
             </div>
+            <div></div>
           </div>
-          <div className="w-full h-[50%]"></div>
         </div>
-      </aside>
+      </nav>
+
+
+
       <div className=" h-full w-full bg-white">
         {/*=============================Dashboard=========================================== */}
         {(page === 'dashboard') ? (
             <>
             <div className="">
-          <h1 className="ml-10 pt-5">DashBoard.</h1>
+          <h1 className="ml-10 pt-5 text-cutomBlueAdmin font-bold text-2xl">DashBoard.</h1>
         </div>
         <div className="w-full h-full flex flex-wrap items-center justify-center ">
           <div className="flex flex-wrap gap-10  p-14 py-16 shadow-2xl items-center justify-center rounded-2xl bg-cutomBlueAdmin">

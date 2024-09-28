@@ -16,6 +16,7 @@ import Footer from "./user/components/Footer";
 import PayForm from "./user/pages/PayForm";
 import { ToastContainer } from 'react-toastify';
 import AdminHome from "./admin/admin_Home/AdminHome";
+import ProductDetails from "./user/components/ProductDetails";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/category" element={<CategorySection />} />
             <Route path="/allproducts" element={<AllProducts />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<CartView />} />
           </Route>
 
