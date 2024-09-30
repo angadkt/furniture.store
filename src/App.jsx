@@ -17,6 +17,7 @@ import PayForm from "./user/pages/PayForm";
 import { ToastContainer } from 'react-toastify';
 import AdminHome from "./admin/admin_Home/AdminHome";
 import ProductDetails from "./user/components/ProductDetails";
+import OrderView from "./user/components/order/OrderView"
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/allproducts" element={<AllProducts />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<CartView />} />
+            <Route path="/orders" element={<OrderView />} />
           </Route>
 
           <Route path="/payment" element={<PaymentPage />} />
@@ -38,6 +40,7 @@ function App() {
           <Route path="/signup" element={<RegistrationForm />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/adminhome" element={<AdminHome />} />
+
         </Routes>
         {/* <Footer /> */}
       </ContextProduct>

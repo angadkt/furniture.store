@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import Swal from 'sweetalert2';
 import { context_page } from '../context/ContextProduct';
+import { useNavigate } from 'react-router-dom'
 
 const PayForm = () => {
-  const {handleAddToOrders , cart} = useContext(context_page);
+  const {handleAddToOrders } = useContext(context_page);
+  const navigate = useNavigate()
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <Formik
@@ -41,9 +44,10 @@ const PayForm = () => {
                 timer: 1500
               });
             setSubmitting(false);
-          }, 400);
-
+          }, );
+          
           //adding orders to the data base 
+          navigate('/orders')
         }}
       >
         {({ isSubmitting }) => (
@@ -84,7 +88,7 @@ const PayForm = () => {
               type="submit"
               className="bg-blue-500 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-600 transition-all duration-300"
               disabled={isSubmitting}
-              onClick={()=>handleAddToOrders(cart)}
+              onClick={handleAddToOrders}
             >
               Pay Now
             </button>

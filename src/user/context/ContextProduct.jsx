@@ -10,6 +10,8 @@ const ContextProduct = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [orders, setOrders] = useState([]);
+  // const [temp , setTemp]  = useState([]);
+ 
   
 
 
@@ -25,30 +27,66 @@ const ContextProduct = ({ children }) => {
 
   // ==================================================== order ==============================================================
 
-    const cartItems  = [...orders, cart]
+    // const cartItems  = [...orders, cart]
 
-    const handleAddToOrders = () =>{
-      console.log('log is working');
+    // const handleAddToOrders = () =>{
+    //   console.log('log is working');
       
-      if(!iD){
-        alert("you should login first") 
-      }else{
-          axios.patch(`http://localhost:5999/users/${iD}`,{
-            orders: cartItems,
-          })
-          .then((res)=>{
-            setOrders(cartItems)
-            setCart(null)
-            console.log("order added to database", orders); 
-          })
-          .catch((err)=>{
-            console.log("error adding order", err);
-          })
-          axios.patch(`http://localhost:5999/users/${iD}`, {
-            "cart": setCart(null)
-          })
-      }
+    //   if(!iD){
+    //     alert("you should login first") 
+    //   }else{
+    //       axios.patch(`http://localhost:5999/users/${iD}`,{
+    //         orders: cartItems,
+    //       })
+    //       .then((res)=>{
+    //         setOrders(cartItems)
+    //         setCart(null)
+    //         console.log("order added to database", orders); 
+    //       })
+    //       .catch((err)=>{
+    //         console.log("error adding order", err);
+    //       })
+    //       axios.patch(`http://localhost:5999/users/${iD}`, {
+    //         "cart": setCart(null)
+    //       })
+    //   }
+    // }
+
+    const handleAddToOrders = async () =>{
+        try{
+          const response = await axios.get(`http://localhost:5999/users/${iD}`)
+          const fetchedUser = response.data;
+          const orderNew = {
+                products: fetchedUser.cart
+          }
+
+          //initialize new user and modify
+          const updatedUser = {
+            ...fetchedUser,
+            orders: [...(fetchedUser.orders || []) , orderNew],
+            cart: [],
+          }
+          console.log(updatedUser);
+          
+          const newResponse = await axios.put(`http://localhost:5999/users/${iD}`, updatedUser)
+          
+
+        } catch(err){
+          console.log("error getting user data", err);
+        }
+
     }
+
+
+    useEffect(()=>{
+      axios.get(`http://localhost:5999/users/${iD}`)
+      .then((res)=>{
+        setOrders(res.data.orders);
+      })
+      .catch((err)=>{
+        console.log('error getting orders', err);
+      })
+    },[orders])
 
 
   
@@ -198,7 +236,7 @@ const decrement = ()=>{
 
   return (
     <context_page.Provider 
-    value={{ products, users, handleAddToCart , cart , setCart, handleRemoveCart , increment , decrement , quantity , handleAddToOrders }}>
+    value={{ products, users, handleAddToCart , cart , setCart, handleRemoveCart , increment , decrement , quantity , handleAddToOrders , orders }}>
       {children}
     </context_page.Provider>
   );

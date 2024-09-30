@@ -8,45 +8,117 @@
       "confirmPassword": "12345678",
       "cart": [
         {
-          "id": "1",
-          "name": "Modern Sofa",
+          "id": "2",
+          "name": "Leather Recliner",
           "category": "Sofa & Seating",
-          "image": "https://img.freepik.com/premium-photo/white-leather-couch-with-wooden-leg-wooden-leg_824582-3276.jpg?w=740",
-          "details": "A stylish and comfortable modern sofa, perfect for your living room.",
-          "price": 499.99,
+          "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
+          "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
+          "price": 799.99,
           "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "L-Shaped Sectional",
+          "category": "Sofa & Seating",
+          "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
+          "details": "Spacious L-shaped sectional sofa, ideal for large families.",
+          "price": 1199.9,
+          "quantity": 19
         }
       ],
       "orders": [
-        [
-          {
-            "id": "2",
-            "name": "Leather Recliner",
-            "category": "Sofa & Seating",
-            "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
-            "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
-            "price": 799.99,
-            "quantity": 2
-          },
-          {
-            "id": "1",
-            "name": "Modern Sofa",
-            "category": "Sofa & Seating",
-            "image": "https://img.freepik.com/premium-photo/white-leather-couch-with-wooden-leg-wooden-leg_824582-3276.jpg?w=740",
-            "details": "A stylish and comfortable modern sofa, perfect for your living room.",
-            "price": 499.99,
-            "quantity": 1
-          },
-          {
-            "id": "3",
-            "name": "L-Shaped Sectional",
-            "category": "Sofa & Seating",
-            "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
-            "details": "Spacious L-shaped sectional sofa, ideal for large families.",
-            "price": 1199.9,
-            "quantity": 19
-          }
-        ]
+        {
+          "products": [
+            {
+              "id": "1",
+              "name": "Modern Sofa",
+              "category": "Sofa & Seating",
+              "image": "https://img.freepik.com/premium-photo/white-leather-couch-with-wooden-leg-wooden-leg_824582-3276.jpg?w=740",
+              "details": "A stylish and comfortable modern sofa, perfect for your living room.",
+              "price": 499.99,
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "products": [
+            {
+              "id": "24",
+              "name": "Ceiling Pendant Lamp",
+              "category": "Lamps & Lighting",
+              "image": "https://m.media-amazon.com/images/I/513AaGnzilL._SY445_SX342_QL70_FMwebp_.jpg",
+              "details": "Modern ceiling pendant lamp with adjustable cord for kitchen or dining area.",
+              "price": 199.99,
+              "quantity": 6
+            },
+            {
+              "id": "25",
+              "name": "LED Desk Lamp",
+              "category": "Lamps & Lighting",
+              "image": "https://m.media-amazon.com/images/I/617jZZZhr3S._SX679_.jpg",
+              "details": "Sleek LED desk lamp with touch control and dimmable settings.",
+              "price": 59.99,
+              "quantity": 1
+            },
+            {
+              "id": "26",
+              "name": "Chandelier with Crystal ",
+              "category": "Lamps & Lighting",
+              "image": "https://i.pinimg.com/564x/18/09/da/1809da5a729196286f5669c1e68875c2.jpg",
+              "details": "Luxurious chandelier with crystal accents, perfect for living or dining rooms.",
+              "price": 499.99,
+              "quantity": 1
+            },
+            {
+              "id": "27",
+              "name": "Floor Lamp with Adjustable",
+              "category": "Lamps & Lighting",
+              "image": "https://i.pinimg.com/736x/32/58/b0/3258b08823a60b7fbb7cb0fec6e25b80.jpg",
+              "details": "Contemporary floor lamp with an adjustable arm and soft lighting.",
+              "price": 129.99,
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "products": [
+            {
+              "id": "6",
+              "name": "Reclining Sofa",
+              "category": "Sofa & Seating",
+              "image": "https://i.pinimg.com/736x/51/ca/ce/51cacefddb5d32d7f54957fe2bf13974.jpg",
+              "details": "Comfortable reclining sofa with a built-in console for drinks.",
+              "price": 899.99,
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "products": [
+            {
+              "id": "15",
+              "name": " Marble Dining Table",
+              "category": "Dining",
+              "image": "https://ii1.pepperfry.com/media/catalog/product/t/a/1100x1210/tappered-vitrified-tile-6-seater-dining-table-in-teak-wood-tappered-vitrified-tile-6-seater-dining-t-fzzv3i.jpg",
+              "details": "Elegant round marble dining table with gold accents.",
+              "price": 1499.9,
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "products": [
+            {
+              "id": "2",
+              "name": "Leather Recliner",
+              "category": "Sofa & Seating",
+              "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
+              "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
+              "price": 799.99,
+              "quantity": 1
+            }
+          ]
+        }
       ]
     },
     {

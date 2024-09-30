@@ -25,7 +25,6 @@ const handleCategory = (category) => {
   else{
     const productFiltered = products.filter((item) => item.category === category)
   setCategorizedProduct(productFiltered);
-  console.log(categoriezedProduct);
   }
 }
 
@@ -43,7 +42,6 @@ const handleCategory = (category) => {
   } else {
     setSearchProducts(categoriezedProduct);
   }
-  // setCategorizedProduct(searchProducts);
 }, [search, categoriezedProduct]);
 
 

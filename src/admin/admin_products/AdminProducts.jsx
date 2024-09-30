@@ -18,9 +18,9 @@ const AdminProducts = () => {
   return (
     <>
       <div className="bg-white">
-        <h1 className="ml-10 pt-5">Product Details.</h1>
+        <h1 className="ml-10 pt-5 text-cutomBlueAdmin font-bold text-2xl  ">Product Details.</h1>
       </div>
-      <div className=" h-full w-full mt-10">
+      <div className=" h-screen w-full mt-10 ">
         <div className=" flex flex-wrap justify-evenly ">
           <div className=" flex gap-40 ">
             <button
@@ -113,7 +113,7 @@ const AdminProducts = () => {
         ) : (
           productPage === "viewproduct" && (
             <>
-              <div className="h-full w-full ">
+              <div className="h-screen w-full overflow-scroll overflow-x-hidden scrollbar-none  ">
                 <div className="flex justify-center mt-5">
                   <h1 className="text-2xl font-semibold">Product List</h1>
                 </div>

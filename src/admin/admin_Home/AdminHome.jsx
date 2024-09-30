@@ -7,10 +7,16 @@ import AdminProducts from "../admin_products/AdminProducts";
 import AdminUsers from "../admin_users/AdminUsers";
 
 const AdminHome = () => {
-  const { products, users } = useContext(context_page);
+  const { products, users , orders  } = useContext(context_page);
   const [page, setPage] = useState(()=>{
     return localStorage.getItem('page') || "dashboard"
   });
+
+  const [totalOrders , setTotalOrders] = useState([]);
+
+  // useEffect(()=>{
+  //   axios.get(`http://localhost:5999/users`)
+  // },[])
 
   useEffect(()=>{
     localStorage.setItem("page" , page);
@@ -21,7 +27,7 @@ const AdminHome = () => {
   }
 
   return (
-    <div className="h-[100%] w-[100%] flex">
+    <div className="h-screen w-[100%] flex">
       <nav className=" w-60 h-[100% ] bg-customBgAdmin">
 
         
@@ -31,7 +37,7 @@ const AdminHome = () => {
 
 
         <div className="bg-cutomBlueAdmin w-60 h-full rounded-tr-[90px]">
-          <div className="w-full  h-[50%] flex flex-wrap flex-col  pl-10 justify-center">
+          <div className="w-full  h-[50%] flex flex-col  pl-10 pt-10  ">
             <div className="flex flex-col gap-4 text-xl text-white font-semibold">
               <button onClick={()=>handlePageChange('dashboard')} className="flex items-center gap-2 focus:border">
                 <span>
@@ -78,7 +84,7 @@ const AdminHome = () => {
             </div>
             <div className="w-44 h-44 border flex items-center shadow-2xl bg-white justify-center flex-col rounded-2xl">
               <h1>Total Orders</h1>
-              <h1>orders.length</h1>
+              <h1>{orders.length}</h1>
             </div>
             <div className="w-44 h-44 border flex items-center shadow-2xl bg-white rounded-2xl justify-center flex-col">
               <h1>Total Earnings</h1>

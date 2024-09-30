@@ -1,115 +1,149 @@
-import React, { useContext, useState } from 'react'
-import {  Link, NavLink, Outlet } from 'react-router-dom'
+import React, { useContext, useState } from "react";
+import {  NavLink, Outlet, useNavigate } from "react-router-dom";
 import { MdMenu } from "react-icons/md";
-import MobileNav from './MobileNav';
+import MobileNav from "./MobileNav";
 import { FaOpencart } from "react-icons/fa";
-import { context_page } from '../context/ContextProduct';
+import { context_page } from "../context/ContextProduct";
 import { FaRegUserCircle } from "react-icons/fa";
 
-
 const Navbar = () => {
+  const [mobView, setMobView] = useState(false);
+  const { users } = useContext(context_page);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
-    const [mobView, setMobView] = useState(false)
-    const { users } = useContext(context_page);
+  const id = localStorage.getItem("id");
+  if (!id) {
+    console.log("No ID found in localStorage.");
+  }
 
-    
+  const currentUser = users.find((item) => item.id === id);
 
+  const Links = [
+    { name: "Home", link: "/" },
+    { name: "Shop", link: "/allproducts" },
+    // { name: input>, link: '/search' },
+    {
+      name: (
+        <div className="flex ">
+          Cart <FaOpencart size={26} />
+        </div>
+      ),
+      link: "/cart",
+    },
+  ];
 
+  // ======================== sign out function ===================================
+  const handleSignOut = () => {
+    localStorage.removeItem("id");
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+  };
 
-    const id = localStorage.getItem('id')
-    if (!id) {
-        console.log("No ID found in localStorage.");
-      }
+  // ============================= modal functions  ==============================
 
-    const currentUser = users.find((item)=> (item.id) === (id))
+  const nameOfUser = localStorage.getItem("username");
+  const emailOfUser = localStorage.getItem("email");
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+  const handleModalnavigate = ()=>{
+    setIsModalOpen(false)
+    navigate('/orders')
+  }
+//   ==========================================
 
-    const Links = [
-        { name: 'Home', link: '/' },
-        { name: 'Shop', link: '/allproducts' },
-        // { name: input>, link: '/search' },
-        { name: <div className='flex '>Cart <FaOpencart size={26}/></div>, link: '/cart' },
-    ]
-
-// ======================== sign out function ===================================
-    const handleSignOut = () => {
-        localStorage.removeItem('id');
-        localStorage.removeItem('username');
-        localStorage.removeItem('password');
-    }
-
-    // =============================  ==============================
-
-    
-
-
-
-
-
-
-
-    return (
-        <>
-
-            <nav className='w-screen h-20  flex flex-wrap  fixed top-0'>
-                <div className='md:flex-1  flex items-center w-full  justify-between'>
-                    <span className='md:ml-16 ml-8 md:text-4xl text-2xl'>Urban Oak</span>
-                    <div className=' md:hidden'>
-                        <button className='mr-8 text-4xl' onClick={() => setMobView(!mobView)
-                        }>
-                            {/* {
+  return (
+    <>
+      <nav className="w-screen h-20  flex flex-wrap  fixed top-0">
+        <div className="md:flex-1  flex items-center w-full  justify-between">
+          <span className="md:ml-16 ml-8 md:text-4xl text-2xl">Urban Oak</span>
+          <div className=" md:hidden">
+            <button
+              className="mr-8 text-4xl"
+              onClick={() => setMobView(!mobView)}
+            >
+              {/* {
                                 console.log(mobView)
                                 
-                            } */}   
-                            <MdMenu />
-                        </button>
-                    </div> 
-                </div>
-                <div className='flex-1  md:flex justify-center items-center hidden'>
-                    <ul className='flex flex-wrap gap-4 text-lg'>
-                        {
-                            Links.map((x, i) => (
-                                <NavLink key={i} to={x.link}>
-                                    {x.name}
-                                </NavLink>
-                            ))
-                        }
-                    </ul>
-                </div>
-                {
-                    currentUser ? ( <div className='flex-1 md:flex justify-end items-center hidden'>
-                    <span className='mr-16 flex gap-3 items-center'>
-                        <NavLink to='/signin'>
-                            <button className='bg-slate-300 py-2 px-4 rounded-lg  hover:bg-slate-500 hover:text-white'
-                            onClick={handleSignOut}>
-                                Sign Out
-                            </button>
-                        </NavLink>
-                        <Link to='/profile'>
-                        <FaRegUserCircle size={30} />
-                        </Link>
-                    </span>
-                    
-                </div> ) : (
-                <div className='flex-1 md:flex justify-end items-center hidden'>
-                <span className='mr-16 '>
-                    <NavLink to='/signin'>
-                        <button className='bg-slate-300 py-2 px-4 rounded-lg rounded-tr-none rounded-br-none hover:bg-slate-500 hover:text-white'>
-                            Sign In
-                        </button>
-                    </NavLink>
-                    <NavLink to='/signup'>
-                        <button className='bg-slate-300 py-2 px-4 rounded-lg rounded-tl-none rounded-bl-none hover:bg-slate-500 hover:text-white'>
-                            Sign Up
-                        </button>
-                    </NavLink>
-                </span>
-            </div>)
-                }
-            </nav>
-            <MobileNav mobView={mobView} setMobView={setMobView}/>
-            <Outlet />
-        </>
-    )
-}
+                            } */}
+              <MdMenu />
+            </button>
+          </div>
+        </div>
+        <div className="flex-1  md:flex justify-center items-center hidden">
+          <ul className="flex flex-wrap gap-4 text-lg">
+            {Links.map((x, i) => (
+              <NavLink key={i} to={x.link}>
+                {x.name}
+              </NavLink>
+            ))}
+          </ul>
+        </div>
+        {currentUser ? (
+          <div className="flex-1 md:flex justify-end items-center hidden">
+            <span className="mr-16 flex gap-3 items-center">
+              <NavLink to="/signin">
+                <button
+                  className="bg-slate-300 py-2 px-4 rounded-lg  hover:bg-slate-500 hover:text-white"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </button>
+              </NavLink>
+              <button onClick={toggleModal}>
+                <FaRegUserCircle size={30} />
+              </button>
+            </span>
+          </div>
+        ) : (
+          <div className="flex-1 md:flex justify-end items-center hidden">
+            <span className="mr-16 ">
+              <NavLink to="/signin">
+                <button className="bg-slate-300 py-2 px-4 rounded-lg rounded-tr-none rounded-br-none hover:bg-slate-500 hover:text-white">
+                  Sign In
+                </button>
+              </NavLink>
+              <NavLink to="/signup">
+                <button className="bg-slate-300 py-2 px-4 rounded-lg rounded-tl-none rounded-bl-none hover:bg-slate-500 hover:text-white">
+                  Sign Up
+                </button>
+              </NavLink>
+            </span>
+          </div>
+        )}
+      </nav>
+      <MobileNav mobView={mobView} setMobView={setMobView} />
 
-export default Navbar
+
+      {/* ========================= modal ============================= */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-start justify-end bg-transparent bg-opacity-50 mt-20 mr-20">
+          <div className="bg-white rounded-lg p-8 shadow-lg w-1/3">
+            <h2 className="text-xl font-semibold mb-4">{nameOfUser}</h2>
+            <p className="mb-6">{emailOfUser}</p>
+
+            {/* Buttons in the modal */}
+            <div className="flex justify-end space-x-4">
+              <button
+                // onClick={toggleModal}
+                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-lg"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleModalnavigate}
+                className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg"
+              >
+                Orders
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      <Outlet />
+    </>
+  );
+};
+
+export default Navbar;
