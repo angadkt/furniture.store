@@ -125,17 +125,17 @@ const Navbar = () => {
 
             {/* Buttons in the modal */}
             <div className="flex justify-end space-x-4">
-              <button
+              {/* <button
                 // onClick={toggleModal}
                 className="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-lg"
               >
                 Cancel
-              </button>
+              </button> */}
               <button
                 onClick={handleModalnavigate}
                 className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg"
               >
-                Orders
+                My Orders
               </button>
             </div>
           </div>

@@ -223,8 +223,40 @@ const decrement = ()=>{
 }
 
 
+// ============================= Admin functions ================================
 
+//delete products
+const handleDeleteProduct = (item) =>{
+ 
+  axios.delete(`http://localhost:5999/products/${item.id}`)
+  .then((res)=> console.log(res))
+  .catch((err)=> console.log(err))
 
+  const updatedProductList = products.filter((x)=>(
+    x.id !== item.id
+  ))
+  setProducts(updatedProductList)
+  alert('product deleted')
+}
+// ..................................
+
+//total earnings
+const totalamountPerProduct = orders.map((order) => {
+   const total =  order.products.reduce((sum, product) => (
+    sum + (product.price * product.quantity)
+  ),0)
+  return total;
+})
+
+const totalEarnings = totalamountPerProduct.reduce((acc,current) => (
+  acc + current
+),0);
+// ...........................................
+
+//add products
+// const handleAddProducts =  () => {
+//   axios
+// }
 
 
 
@@ -236,7 +268,20 @@ const decrement = ()=>{
 
   return (
     <context_page.Provider 
-    value={{ products, users, handleAddToCart , cart , setCart, handleRemoveCart , increment , decrement , quantity , handleAddToOrders , orders }}>
+    value={{ products,
+      setProducts,
+      users,
+      handleAddToCart,
+      cart,
+      setCart,
+      handleRemoveCart,
+      increment,
+      decrement,
+      quantity,
+      handleAddToOrders,
+      orders,
+      handleDeleteProduct, 
+      totalEarnings }}>
       {children}
     </context_page.Provider>
   );

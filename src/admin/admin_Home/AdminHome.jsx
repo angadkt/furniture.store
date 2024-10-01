@@ -7,7 +7,7 @@ import AdminProducts from "../admin_products/AdminProducts";
 import AdminUsers from "../admin_users/AdminUsers";
 
 const AdminHome = () => {
-  const { products, users , orders  } = useContext(context_page);
+  const { products, users , orders , totalEarnings  } = useContext(context_page);
   const [page, setPage] = useState(()=>{
     return localStorage.getItem('page') || "dashboard"
   });
@@ -88,7 +88,7 @@ const AdminHome = () => {
             </div>
             <div className="w-44 h-44 border flex items-center shadow-2xl bg-white rounded-2xl justify-center flex-col">
               <h1>Total Earnings</h1>
-              <h1>total amount </h1>
+              <h1>{totalEarnings}</h1>
             </div>
           </div>
         </div>
