@@ -18,6 +18,7 @@ import { ToastContainer } from 'react-toastify';
 import AdminHome from "./admin/admin_Home/AdminHome";
 import ProductDetails from "./user/components/ProductDetails";
 import OrderView from "./user/components/order/OrderView"
+import EditProduct from "./admin/admin_products/EditProduct";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
           <Route path="/signup" element={<RegistrationForm />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/adminhome" element={<AdminHome />} />
-
+          <Route path="/editproduct/:id" element={<EditProduct />} />
         </Routes>
         {/* <Footer /> */}
       </ContextProduct>

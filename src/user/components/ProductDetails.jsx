@@ -6,9 +6,11 @@ import { FaOpencart } from "react-icons/fa";
 const ProductDetails = () => {
   const { id } = useParams();
   const { products, handleAddToCart } = useContext(context_page);
+  
   const productDetail = products.filter(
     (item) => parseInt(item.id) === parseInt(id)
   );
+  
   return (
     <div>
       <div className="mt-20 flex justify-center items-center">

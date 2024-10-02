@@ -11,9 +11,8 @@ const ContextProduct = ({ children }) => {
   const [quantity, setQuantity] = useState(1);
   const [orders, setOrders] = useState([]);
   // const [temp , setTemp]  = useState([]);
- 
-  
 
+  
 
 
 
@@ -253,10 +252,7 @@ const totalEarnings = totalamountPerProduct.reduce((acc,current) => (
 ),0);
 // ...........................................
 
-//add products
-// const handleAddProducts =  () => {
-//   axios
-// }
+
 
 
 

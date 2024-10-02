@@ -3,6 +3,7 @@ import { context_page } from "../../user/context/ContextProduct";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,6 +13,7 @@ const AdminProducts = () => {
   const [productPage, setProductPage] = useState(() => {
     return localStorage.getItem("productPage") || "viewproduct";
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("productPage", productPage);
@@ -85,7 +87,7 @@ const AdminProducts = () => {
         .positive("Price must be positive")
         .required("Price is required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: (values, {resetForm}) => {
       let newId = String(products.length + 1);
       const newProduct = { ...values, id: newId };
 
@@ -93,6 +95,9 @@ const AdminProducts = () => {
         .then((res) => {
           console.log("Product added:", res);
           alert('Product added to the database');
+          setProducts([...products, newProduct])
+
+          resetForm()
         })
         .catch((err) => {
           console.log("Error:", err);
@@ -276,7 +281,8 @@ const AdminProducts = () => {
                             {item.price}
                           </td>
                           <td className="border border-gray-300 px-4 py-2 flex gap-2 flex-col">
-                            <button className="border px-4 text-white bg-blue-500 hover:bg-blue-600 hover:border-blue-600">
+                            <button onClick={()=>navigate(`/editproduct/${item.id}`)}
+                            className="border px-4 text-white bg-blue-500 hover:bg-blue-600 hover:border-blue-600">
                               Edit
                             </button>
                             <button

@@ -8,13 +8,13 @@
       "confirmPassword": "12345678",
       "cart": [
         {
-          "id": 30,
-          "name": "Angad KT",
-          "category": "sofa & seating",
-          "image": "https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Mg2dioCx7NcsLzuBbuWXsOGoxeV6iT4nctBvoQKkf8dXFOSZPED6uTDWN9jZsVu57Zx5%259BkfhcLFRfH438nhVEeb",
-          "details": "awsome",
-          "price": 122,
-          "quantity": 9
+          "id": "12",
+          "name": "Pillow Top Mattress",
+          "category": "Mattresses",
+          "image": "https://ii1.pepperfry.com/media/catalog/product/z/e/1100x1210/zenimo-pillow-top-8-inch-pocketed-spring-single-size-mattress--with-1-free-pillow--zenimo-pillow-top-15hw8a.jpg",
+          "details": "Extra plush pillow top mattress for added comfort and luxury.",
+          "price": 1199,
+          "quantity": 1
         }
       ],
       "orders": [
@@ -113,20 +113,24 @@
         {
           "products": [
             {
-              "id": 29,
-              "name": "Angad KT",
-              "category": "sofa & seating",
-              "image": "https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Mg2dioCx7NcsLzuBbuWXsOGoxeV6iT4nctBvoQKkf8dXFOSZPED6uTDWN9jZsVu57Zx5%259BkfhcLFRfH438nhVEeb",
-              "details": "awsome",
-              "price": 239
+              "id": "2",
+              "name": "Leather Recliner",
+              "category": "Sofa & Seating",
+              "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
+              "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
+              "price": 799,
+              "quantity": 1
+            },
+            {
+              "id": "29",
+              "name": "Ease Fabric  Seater",
+              "category": "Sofa & Seating",
+              "image": "https://ii1.pepperfry.com/media/catalog/product/e/a/1100x1210/ease-fabric-single-seater--in-dusky-blue-colour-ease-fabric-single-seater--in-dusky-blue-colour-0jifxe.jpg",
+              "details": "Ease Fabric Single Seater Manual Recliner In Dusky Blue Colour",
+              "price": 11399,
+              "quantity": 1
             }
           ]
-        },
-        {
-          "products": []
-        },
-        {
-          "products": []
         }
       ]
     },
@@ -174,8 +178,7 @@
           "price": 599,
           "quantity": 1
         }
-      ],
-      "quantity": 14
+      ]
     }
   ],
   "categories": [
@@ -222,9 +225,14 @@
       "name": "Modern Sofa",
       "category": "Sofa & Seating",
       "image": "https://img.freepik.com/premium-photo/white-leather-couch-with-wooden-leg-wooden-leg_824582-3276.jpg?w=740",
-      "details": "A stylish and comfortable modern sofa, perfect for your living room.",
+      "details": "A stylish and comfortable modern sofa, perfect for your  room.",
       "price": 499,
-      "quantity": 1
+      "quantity": 1,
+      "fltPro": {
+        "details": "A stylish and comfortable modern sofa, perfect for your living room.+",
+        "name": "Modern Sofat",
+        "price": "49"
+      }
     },
     {
       "id": "2",
@@ -467,6 +475,24 @@
       "image": "https://i.pinimg.com/736x/00/b1/4d/00b14dea7ebefeab51c18e729e476c6e.jpg",
       "details": "Minimalist wall sconce with warm LED lighting, ideal for hallways and bedrooms.",
       "price": 799,
+      "quantity": 1
+    },
+    {
+      "id": "29",
+      "name": "Ease Fabric  Seater",
+      "category": "Sofa & Seating",
+      "image": "https://ii1.pepperfry.com/media/catalog/product/e/a/1100x1210/ease-fabric-single-seater--in-dusky-blue-colour-ease-fabric-single-seater--in-dusky-blue-colour-0jifxe.jpg",
+      "details": "Ease Fabric Single Seater Manual Recliner In Dusky Blue Colour",
+      "price": "1234",
+      "quantity": 1
+    },
+    {
+      "id": "30",
+      "name": "Akin Queen  Bed",
+      "category": "Mattresses",
+      "image": "https://ii1.pepperfry.com/media/catalog/product/a/k/1100x1210/akin-queen-size-bed-in-walnut-finish-akin-queen-size-bed-in-walnut-finish-9xr8kf.jpg",
+      "details": "Akin Queen Size Bed in Walnut Finish",
+      "price": 4999,
       "quantity": 1
     }
   ]
