@@ -5,14 +5,29 @@ import { LuUsers } from "react-icons/lu";
 import { context_page } from "../../user/context/ContextProduct";
 import AdminProducts from "../admin_products/AdminProducts";
 import AdminUsers from "../admin_users/AdminUsers";
+import { useNavigate } from "react-router-dom";
 
 const AdminHome = () => {
-  const { products, users , orders , totalEarnings  } = useContext(context_page);
+  // const [islogin, setIsLogin] = useState(null);
+  const { products, users    } = useContext(context_page);
   const [page, setPage] = useState(()=>{
     return localStorage.getItem('page') || "dashboard"
   });
 
-  const [totalOrders , setTotalOrders] = useState([]);
+  const navigate = useNavigate();
+
+  // const [totalOrders , setTotalOrders] = useState([]);
+
+
+  // =========================================================
+  //fetching all orders
+ const allOrders = users.map((item)=> item.orders).flat();
+
+ //total earnings
+  const totalProducts = allOrders.map((item)=> item.products).flat();
+  const totalEarnings = totalProducts.reduce((acc, item)=> acc + (item.price * item.quantity),0);
+
+
 
   // useEffect(()=>{
   //   axios.get(`http://localhost:5999/users`)
@@ -26,8 +41,20 @@ const AdminHome = () => {
       setPage(str)  
   }
 
+
+
+  const handleAdminLogout = ()=>{
+    localStorage.removeItem("is_admin")
+    navigate("/signin")
+    
+    
+  }
+
+  const isAdmin = localStorage.getItem("is_admin")
+ 
   return (
     <div className="h-screen w-[100%] flex">
+      {isAdmin ? <>
       <nav className=" w-60 h-[100% ] bg-customBgAdmin">
 
         
@@ -37,7 +64,7 @@ const AdminHome = () => {
 
 
         <div className="bg-cutomBlueAdmin w-60 h-full rounded-tr-[90px]">
-          <div className="w-full  h-[50%] flex flex-col  pl-10 pt-10  ">
+          <div className="w-full  h-[50%] flex flex-col  pl-10 pt-10  justify-around">
             <div className="flex flex-col gap-4 text-xl text-white font-semibold">
               <button onClick={()=>handlePageChange('dashboard')} className="flex items-center gap-2 focus:border">
                 <span>
@@ -58,7 +85,11 @@ const AdminHome = () => {
                 <span>Users</span>
               </button>
             </div>
-            <div></div>
+            <div>
+              <button 
+              onClick={handleAdminLogout}
+              className=" px-4 py-1 bg-customButtonAdmin text-black font-semibold rounded-md hover:shadow-2xl hover:border-2 hover:border-slate-600">Sign Out</button>
+            </div>
           </div>
         </div>
       </nav>
@@ -84,7 +115,7 @@ const AdminHome = () => {
             </div>
             <div className="w-44 h-44 border flex items-center shadow-2xl bg-white justify-center flex-col rounded-2xl">
               <h1>Total Orders</h1>
-              <h1>{orders.length}</h1>
+              <h1>{allOrders.length}</h1>
             </div>
             <div className="w-44 h-44 border flex items-center shadow-2xl bg-white rounded-2xl justify-center flex-col">
               <h1>Total Earnings</h1>
@@ -97,6 +128,7 @@ const AdminHome = () => {
         : (page === 'users') && (<AdminUsers />)}
         
       </div>
+      </> : <p>Admin not logined</p>}
     </div>
   );
 };

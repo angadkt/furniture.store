@@ -13,6 +13,8 @@ const [userDeatils, setUserDeatils] = useState({
   email: '',
   password: '',
   confirmPassword: '',
+  cart:[],
+  orders:[]
 });
 
 const [errors, setErrors] = useState({})

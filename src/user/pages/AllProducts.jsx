@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { context_page } from "../context/ContextProduct";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Toaster} from 'react-hot-toast';
+
 
 const AllProducts = () => {
   const { products, handleAddToCart } = useContext(context_page);
@@ -184,6 +186,7 @@ if (!products || products.length === 0) {
               ))}
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

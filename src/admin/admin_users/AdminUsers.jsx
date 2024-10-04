@@ -1,10 +1,12 @@
 import React from 'react'
 import { useContext } from 'react'
 import { context_page } from '../../user/context/ContextProduct'
-import { tr } from 'framer-motion/client';
+import { useNavigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 const AdminUsers = () => {
     const {users} = useContext(context_page);
+    const navigate = useNavigate()
 
   return (
     <>
@@ -29,7 +31,9 @@ const AdminUsers = () => {
           <td class="py-3 px-6 text-left">{item.username}</td>
           <td class="py-3 px-6 text-left">{item.email}</td>
           <td class="py-3 px-6 text-center">
-            <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+            <button 
+            onClick={()=>navigate(`/UserInfo/${item.id}`)}
+            class="bg-blue-500 text-white px-4 py-2 rounded   hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
               View More
             </button>
           </td>

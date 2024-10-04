@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import CategorySection from "../components/CategorySection";
+import { Toaster } from "react-hot-toast";
 
 const Home = () => {
   return (

@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { FaRadiationAlt } from "react-icons/fa";
 import RegistrationForm from "./user/pages/RegistrationForm";
 import SignIn from "./user/pages/SignIn";
 import Home from "./user/pages/Home";
@@ -19,6 +18,7 @@ import AdminHome from "./admin/admin_Home/AdminHome";
 import ProductDetails from "./user/components/ProductDetails";
 import OrderView from "./user/components/order/OrderView"
 import EditProduct from "./admin/admin_products/EditProduct";
+import UserInfo from "./admin/admin_users/UserInfo";
 
 function App() {
   return (
@@ -42,6 +42,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/adminhome" element={<AdminHome />} />
           <Route path="/editproduct/:id" element={<EditProduct />} />
+          <Route path="/UserInfo/:id" element={<UserInfo />} />
         </Routes>
         {/* <Footer /> */}
       </ContextProduct>

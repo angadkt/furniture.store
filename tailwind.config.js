@@ -14,6 +14,7 @@ export default {
         cutomBlueAdmin: '#295F98',
         customBgAdmin: '#EAE4DD',
         customCardAdmin: '#CDC2A5',
+        customButtonAdmin: '#F0F0F0',
       },
     },
   },

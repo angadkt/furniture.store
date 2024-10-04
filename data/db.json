@@ -8,11 +8,20 @@
       "confirmPassword": "12345678",
       "cart": [
         {
-          "id": "12",
-          "name": "Pillow Top Mattress",
-          "category": "Mattresses",
-          "image": "https://ii1.pepperfry.com/media/catalog/product/z/e/1100x1210/zenimo-pillow-top-8-inch-pocketed-spring-single-size-mattress--with-1-free-pillow--zenimo-pillow-top-15hw8a.jpg",
-          "details": "Extra plush pillow top mattress for added comfort and luxury.",
+          "id": "2",
+          "name": "Leather Recliner",
+          "category": "Sofa & Seating",
+          "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
+          "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
+          "price": 799,
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "L-Shaped Sectional",
+          "category": "Sofa & Seating",
+          "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
+          "details": "Spacious L-shaped sectional sofa, ideal for large families.",
           "price": 1199,
           "quantity": 1
         }
@@ -132,51 +141,58 @@
             }
           ]
         }
-      ]
+      ],
+      "isActive": true
     },
     {
-      "id": "ae8b",
-      "username": "suresh",
-      "email": "ssreeragsuresh777@gmail.com",
-      "password": "1234567",
-      "confirmPassword": "1234567"
-    },
-    {
-      "id": "e0d0",
-      "username": "ramesh",
-      "email": "ramesh777@gmail.com",
-      "password": "1234567",
-      "confirmPassword": "1234567"
-    },
-    {
-      "id": "f044",
-      "username": "sasimon",
-      "email": "sasimon@gmail.com",
-      "password": "asdfghjkl",
-      "confirmPassword": "asdfghjkl"
-    },
-    {
-      "id": "b04c",
-      "username": "aaaa",
-      "email": "a@aa.com",
+      "id": "4d75",
+      "username": "salih",
+      "email": "salih@gmail.com",
       "password": "12345678",
-      "confirmPassword": "12345678"
-    },
-    {
-      "id": "df01",
-      "username": "ttttt",
-      "email": "sasimon23@gmail.com",
-      "password": "0987654321",
-      "confirmPassword": "0987654321",
+      "confirmPassword": "12345678",
       "cart": [
         {
-          "id": "5",
-          "name": "Chaise Lounge",
+          "id": "3",
+          "name": "L-Shaped Sectional",
           "category": "Sofa & Seating",
-          "image": "https://i.pinimg.com/564x/cc/da/73/ccda73055b2f5de07c84f887113f70ea.jpg",
-          "details": "Elegant chaise lounge with soft cushions, perfect for relaxation.",
-          "price": 599,
+          "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
+          "details": "Spacious L-shaped sectional sofa, ideal for large families.",
+          "price": 1199,
           "quantity": 1
+        }
+      ],
+      "orders": []
+    },
+    {
+      "id": "3ff3",
+      "username": "sadiq",
+      "email": "sadiq123@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "cart": [
+        {
+          "id": "4",
+          "name": "Loveseat Sofa",
+          "category": "Sofa & Seating",
+          "image": "https://i.pinimg.com/736x/87/49/71/874971ef6cd3ca41e0677aad333f6745.jpg",
+          "details": "Compact and cozy loveseat sofa, perfect for small apartments.",
+          "price": 349,
+          "quantity": 1
+        }
+      ],
+      "orders": [
+        {
+          "products": [
+            {
+              "id": "3",
+              "name": "L-Shaped Sectional",
+              "category": "Sofa & Seating",
+              "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
+              "details": "Spacious L-shaped sectional sofa, ideal for large families.",
+              "price": 1199,
+              "quantity": 1
+            }
+          ]
         }
       ]
     }
@@ -221,20 +237,6 @@
   ],
   "products": [
     {
-      "id": "1",
-      "name": "Modern Sofa",
-      "category": "Sofa & Seating",
-      "image": "https://img.freepik.com/premium-photo/white-leather-couch-with-wooden-leg-wooden-leg_824582-3276.jpg?w=740",
-      "details": "A stylish and comfortable modern sofa, perfect for your  room.",
-      "price": 499,
-      "quantity": 1,
-      "fltPro": {
-        "details": "A stylish and comfortable modern sofa, perfect for your living room.+",
-        "name": "Modern Sofat",
-        "price": "49"
-      }
-    },
-    {
       "id": "2",
       "name": "Leather Recliner",
       "category": "Sofa & Seating",
@@ -250,7 +252,7 @@
       "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
       "details": "Spacious L-shaped sectional sofa, ideal for large families.",
       "price": 1199,
-      "quantity": 19
+      "quantity": 1
     },
     {
       "id": "4",
@@ -493,6 +495,15 @@
       "image": "https://ii1.pepperfry.com/media/catalog/product/a/k/1100x1210/akin-queen-size-bed-in-walnut-finish-akin-queen-size-bed-in-walnut-finish-9xr8kf.jpg",
       "details": "Akin Queen Size Bed in Walnut Finish",
       "price": 4999,
+      "quantity": 1
+    },
+    {
+      "id": "30",
+      "name": "Rana  Chaise Lounger",
+      "category": "Sofa & Seating",
+      "image": "https://ii1.pepperfry.com/media/catalog/product/r/a/1100x1210/rana-velvet-rhs-chaise-lounger-in-warm-white-colour-rana-velvet-rhs-chaise-lounger-in-warm-white-col-vvvkzs.jpg",
+      "details": "Rana velvet RHS Chaise Lounger In Warm White Colour",
+      "price": 7999,
       "quantity": 1
     }
   ]

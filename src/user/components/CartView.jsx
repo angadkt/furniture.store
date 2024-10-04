@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { context_page } from "../context/ContextProduct";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from 'react-hot-toast';
 
 const CartView = () => {
   const { cart, setCart, handleRemoveCart, increment, decrement, quantity } =
@@ -90,6 +91,7 @@ const CartView = () => {
           </button>
         </div>
       )}
+      <Toaster />
     </div>
   );
 };

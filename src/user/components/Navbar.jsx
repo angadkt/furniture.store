@@ -55,7 +55,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-screen h-20  flex flex-wrap  fixed top-0">
+      <nav className="w-screen h-20  flex flex-wrap  fixed top-0 z-50">
         <div className="md:flex-1  flex items-center w-full  justify-between">
           <span className="md:ml-16 ml-8 md:text-4xl text-2xl">Urban Oak</span>
           <div className=" md:hidden">
