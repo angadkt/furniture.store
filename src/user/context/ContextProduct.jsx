@@ -14,6 +14,7 @@ const ContextProduct = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [active, setActive] = useState(true);
   const [userId , setUserId] = useState(null);
+  // const [fetchedCart , setFetchedCart] = useState([])
 
 
 
@@ -98,6 +99,16 @@ const ContextProduct = ({ children }) => {
   }, []);
 
   // ====================================  handle Add to cart=======================================================
+  // useEffect(()=>{
+  //     axios.get(`http://localhost:5999/users/${iD}`)
+  //     .then((res)=>{
+  //       const newData = res.data.cart
+  //       setFetchedCart(newData)
+  //     })
+  //     .catch((err)=> console.log(err)
+  //     )
+  // },[])
+
 
   const activeStatus = localStorage.getItem("active");
   const handleAddToCart = (elem) => {
@@ -129,6 +140,22 @@ const ContextProduct = ({ children }) => {
       }
     }
   };
+
+    // const handleCartAdd = async ()=>{
+    //   if(!iD){
+    //     try{
+    //       const response = await axios.get(`http://localhost:5999/users/${iD}`);
+    //       const fetchedData = response.data;
+    //       const statusData = fetchedData.isActive
+
+    //       if(statusData === "false"){
+    //         toast("your account is blocked")
+    //       }else{
+
+    //       }
+    //     }
+    //   }
+    // }
 
   const handleRemoveCart = (item) => {
     const newCart = cart.filter((x) => {

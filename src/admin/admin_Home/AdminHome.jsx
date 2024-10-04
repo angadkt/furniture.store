@@ -16,7 +16,6 @@ const AdminHome = () => {
 
   const navigate = useNavigate();
 
-  // const [totalOrders , setTotalOrders] = useState([]);
 
 
   // =========================================================
@@ -102,7 +101,7 @@ const AdminHome = () => {
             <>
             <div className="">
           <h1 className="ml-10 pt-5 text-cutomBlueAdmin font-bold text-2xl">DashBoard.</h1>
-        </div>
+        {/* </div>
         <div className="w-full h-full flex flex-wrap items-center justify-center ">
           <div className="flex flex-wrap gap-10  p-14 py-16 shadow-2xl items-center justify-center rounded-2xl bg-cutomBlueAdmin">
             <div className="w-44 h-44  flex items-center rounded-2xl flex-col justify-center bg-white shadow-2xl">
@@ -120,6 +119,16 @@ const AdminHome = () => {
             <div className="w-44 h-44 border flex items-center shadow-2xl bg-white rounded-2xl justify-center flex-col">
               <h1>Total Earnings</h1>
               <h1>{totalEarnings}</h1>
+            </div>
+          </div> */}
+          <div className="w-full h-screen bg-white flex flex-wrap ">
+            <div className="flex-1  flex flex-wrap flex-col mb-24 mt-10 mx-10 gap-10">
+              <div className="bg-gray-300 flex-1 rounded-3xl hover:drop-shadow-2xl shadow-2xl"></div>
+              <div className="flex-1 bg-gray-300 rounded-3xl shadow-2xl hover:drop-shadow-2xl "></div>
+            </div>
+            <div className="flex-1  flex flex-wrap flex-col mb-24 mt-10 mx-10 gap-10">
+            <div className="bg-gray-300 flex-1 rounded-3xl hover:drop-shadow-2xl shadow-2xl"></div>
+            <div className="flex-1 bg-gray-300 rounded-3xl hover:drop-shadow-2xl shadow-2xl"></div>
             </div>
           </div>
         </div>

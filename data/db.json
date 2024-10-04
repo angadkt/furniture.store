@@ -8,20 +8,11 @@
       "confirmPassword": "12345678",
       "cart": [
         {
-          "id": "2",
-          "name": "Leather Recliner",
-          "category": "Sofa & Seating",
-          "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
-          "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
-          "price": 799,
-          "quantity": 1
-        },
-        {
-          "id": "3",
-          "name": "L-Shaped Sectional",
-          "category": "Sofa & Seating",
-          "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
-          "details": "Spacious L-shaped sectional sofa, ideal for large families.",
+          "id": "12",
+          "name": "Pillow Top Mattress",
+          "category": "Mattresses",
+          "image": "https://ii1.pepperfry.com/media/catalog/product/z/e/1100x1210/zenimo-pillow-top-8-inch-pocketed-spring-single-size-mattress--with-1-free-pillow--zenimo-pillow-top-15hw8a.jpg",
+          "details": "Extra plush pillow top mattress for added comfort and luxury.",
           "price": 1199,
           "quantity": 1
         }

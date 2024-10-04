@@ -1,11 +1,39 @@
-import React, { useContext } from "react";
-import { context_page } from "../../context/ContextProduct";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+// import { axios } from "axios";
+
+
+
+
+
+
+
+
+
 
 const OrderView = () => {
-  const { orders } = useContext(context_page);
+  const [specificOrder, setSpecificOrder] = useState([])
+
+  const userId = localStorage.getItem('id');
+
+//second time fetching user data
+
+  useEffect(()=>{
+    axios.get(`http://localhost:5999/users/${userId}`)
+      .then((res)=>{
+        setSpecificOrder(res.data.orders)
+      })
+      .catch((err)=> console.log(err)
+      )
+  },[userId])
+
+
+
+
   return (
     <div className="container mx-auto p-4  mt-20">
-      {orders.map((order, index) => (
+      {specificOrder.map((order, index) => (
         <div
           key={index}
           className="bg-white shadow-lg rounded-lg p-6 mb-6 hover:shadow-xl transition-shadow duration-300 mx-16"
