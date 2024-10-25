@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from 'react-hot-toast';
 
 const CartView = () => {
-  const { cart, setCart, handleRemoveCart, increment, decrement, quantity } =
+  const { cart, setCart, handleRemoveCart, increment } =  
     useContext(context_page);
   const navigate = useNavigate();
   // const [cartData , setCartData] = useState([])
@@ -14,13 +14,13 @@ const CartView = () => {
 
   useEffect(() => {
     if (!iD) {
-      alert("please login first");
+      toast("please login first");
     } else {
       axios
         .get(`http://localhost:5999/users/${iD}`)
         .then((res) => setCart(res.data.cart));
     }
-  }, [cart]);
+  }, []);
 
   const totalPrize = cart.reduce((acc, element) => acc + (element.price), 0);
   const updatedTotalPrice = Math.floor(cart.reduce((acc, element) => acc + (element.price * element.quantity), 0));
@@ -52,7 +52,7 @@ const CartView = () => {
             <h1>MRP : {item.price}</h1>
             <button
               onClick={() => handleRemoveCart(item)}
-              className="bg-red-500 text-white px-1 rounded-sm hover:bg-red-700 shadow-2xl"
+              className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-4 py-1 text-center me-2 mb-2"
             >
               Remove
             </button>
@@ -61,7 +61,7 @@ const CartView = () => {
             <span>Qty: &nbsp;</span>
             <button
               className="rounded-lg border-4 px-2"
-              onClick={() => increment(item,1)}
+              
             >
               +
             </button>

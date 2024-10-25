@@ -4,6 +4,7 @@ import { context_page } from "../context/ContextProduct";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Toaster} from 'react-hot-toast';
+import Footer from "../components/Footer";
 
 
 const AllProducts = () => {
@@ -66,7 +67,7 @@ if (!products || products.length === 0) {
     
   return (
     <div className="mt-20 bg-transparent">
-      <div className="w-full h-full   md:px-16 px-8 mt-5">
+      <div className="w-full h-full   md:px-16 px-8 mt-5 mb-16">
         <div className="w-full flex justify-center">
           <div class="max-w-md mx-auto">
             <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-customCardColor overflow-hidden mt-5 ">
@@ -98,7 +99,7 @@ if (!products || products.length === 0) {
             </div>
           </div>
         </div>
-        <div className="w-full h-10 my-5 flex justify-evenly font-semibold  ">
+        <div className="w-full h-10 my-5 flex justify-evenly font-semibold   ">
           <button 
           className="focus:border-b focus:border-black"
           onClick={()=>handleCategory("All Products")} >ALL PRODUCTS</button>
@@ -135,16 +136,16 @@ if (!products || products.length === 0) {
                     <h1 className=" font-semibold text-red-500">
                       {item.price}
                     </h1>
-                    <div className="flex justify-between ">
+                    <div className="flex justify-between mt-2">
                       <button
                         onClick={() => handleAddToCart(item)}
-                        className=" p-1 rounded-md px-2 mt-2 bg-blue-500 text-white hover:bg-blue-600"
+                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2 text-center me-2 mb-2"
                       >
                         Add to Cart
                       </button>
                       <button
                         onClick={() => navigate(`/products/${item.id}`)}
-                        className=" p-1 rounded-md px-2 mt-2 bg-blue-500 text-white hover:bg-blue-600 mr-4"
+                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2 text-center me-2 mb-2"
                       >
                         View Details
                       </button>
@@ -187,6 +188,7 @@ if (!products || products.length === 0) {
         </div>
       </div>
       <Toaster />
+      <Footer />
     </div>
   );
 };

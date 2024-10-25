@@ -85,12 +85,15 @@ const SignIn = () => {
 
   return (
     <div
-      className="w-screen h-screen bg-customLigthPurple flex flex-col 
+      className="w-screen h-screen bg-white flex flex-col 
      justify-center items-center"
     >
-      <div className="  p-20 rounded-2xl bg-customDarkPurple shadow-2xl ">
+      <div className="  p-20 rounded-2xl bg-white  border-2 border-yellow-100 drop-shadow-[0_10px_10px_rgba(234,179,8,0.4)]">
         <form onSubmit={handleSubmit} className="flex flex-col flex-wrap gap-4">
-          <span className="text-4xl">Sign In</span>
+        <span className="text-4xl font-bold text-customText">
+  Sign In
+</span>
+
 
           <input
             type="email"
@@ -99,7 +102,7 @@ const SignIn = () => {
             onChange={(e) =>
               setUserDeatils({ ...userDetails, email: e.target.value })
             }
-            className="p-3 w-80 rounded-xl"
+            className="p-3 w-80 rounded-xl border border-yellow-100 focus:border-2 focus:border-yellow-300 focus:outline-none"
           />
           {valid ? (
             <></>
@@ -114,7 +117,7 @@ const SignIn = () => {
             onChange={(e) =>
               setUserDeatils({ ...userDetails, password: e.target.value })
             }
-            className="p-3 w-80 rounded-xl"
+            className="p-3 w-80 rounded-xl border border-yellow-100 focus:border-2 focus:border-yellow-300 focus:outline-none"
           />
           {valid ? (
             <></>
@@ -123,14 +126,18 @@ const SignIn = () => {
           )}
 
           {/* <Link to="/"> */}
-          <button className="  w-20 p-1 rounded-md bg-slate-500 text-white hover:bg-slate-700">
+          <button 
+          // className="  w-20 p-1 rounded-md bg-slate-500 text-white hover:bg-slate-700"
+          className="  w-20 p-1 rounded-md bg-white text-customText border-2  border-yellow-200 hover:bg-yellow-300 hover:text-white font-semibold"
+          
+          >
             Sign In
           </button>
           {/* </Link> */}
         </form>
-        <span className="text-sm">
+        <span className="text-sm ">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-red-500 text-sm">
+          <Link to="/signup" className="text-red-500 text-sm hover:text-red-800">
             Sign up
           </Link>
         </span>

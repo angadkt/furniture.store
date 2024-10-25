@@ -14,8 +14,8 @@ const UserInfo = () => {
     console.log(currentUser)
 
     return (
-        <div className="w-full h-screen flex justify-center items-center bg-gray-100">
-  <div className="mx-20 bg-white p-10 shadow-2xl rounded-2xl max-w-3xl w-full">
+        <div className="w-full h-screen flex justify-center items-center bg-gray-100 ">
+  <div className="mx-20 bg-white p-10 shadow-2xl rounded-2xl max-w-3xl w-full ">
     {/* Profile Section */}
     <div className="text-center mb-8">
       <h1 className="text-4xl font-extrabold text-gray-800">Profile</h1>
@@ -42,34 +42,13 @@ const UserInfo = () => {
 
     {/* Cart Section */}
     <div>
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6 border-b-2 pb-2 border-gray-200">User Cart</h2>
-      {/* {currentUser.length > 0 ? 
-        currentUser.cart.map((item) => (
-          <div
-            key={item.id}
-            className="p-4 rounded-lg shadow-md bg-gray-50 hover:bg-gray-100 transition-all flex items-center gap-4 mb-4"
-          >
-            <img
-              className="w-20 h-20 rounded-md border border-gray-300"
-              src={item.image}
-              alt={item.name}
-            />
-            <div>
-              <h3 className="text-lg font-semibold text-gray-700">Product: {item.name}</h3>
-              <p className="text-sm text-gray-500">MRP (per product): {item.price}</p>
-              <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
-            </div>
-          </div>
-        ))
-      : (
-        <p className="text-center text-gray-500">No items in cart</p>
-      )} */}
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6 border-b-2 pb-2 border-gray-200 ">User Cart</h2>
       {
         currentUser.cart.length > 0 ? 
         currentUser.cart.map((item,index)=>{
           return (
-            <>
-            <div key={item.index}>
+            <div className=''>
+            <div  key={item.index}>
             <div
             key={item.id}
             className="p-4 rounded-lg shadow-md bg-gray-50 hover:bg-gray-100 transition-all flex items-center gap-4 mb-4"
@@ -86,7 +65,7 @@ const UserInfo = () => {
             </div>
           </div>
             </div>
-            </>
+            </div>
           )
         })
          :

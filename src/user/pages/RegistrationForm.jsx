@@ -67,16 +67,16 @@ const handleSubmit = (e)=>{
 
 
   return (
-    <div className='w-screen h-screen bg-customLigthPurple flex flex-col 
+    <div className='w-screen h-screen bg-white flex flex-col 
      justify-center items-center'>
-      <div className='  p-20 rounded-2xl bg-customDarkPurple shadow-2xl'>
+      <div className='  p-20 rounded-2xl bg-white shadow-2xl border-2 border-yellow-100 drop-shadow-[0_10px_10px_rgba(234,179,8,0.4)]'>
         {/* {
           valid?<></>:<span></span>
         } */}
         <form 
         onSubmit={handleSubmit}
         className='flex flex-col flex-wrap gap-4'>
-          <span className='text-4xl'>Create Account</span>
+          <span className='text-4xl font-bold text-customText'>Create Account</span>
           
           <div>
           <input 
@@ -84,7 +84,7 @@ const handleSubmit = (e)=>{
           placeholder='username' 
           name='username'
           onChange={(e)=>setUserDeatils({...userDeatils, username:e.target.value})}
-          className='p-3 w-80 rounded-xl' />
+          className='p-3 w-80 rounded-xl focus:outline-none border border-yellow-100 focus:border-2 focus:border-yellow-300' />
           {
             valid? <></> : <p className='text-red-600 text-[13px]'>{errors.username}</p>
           }
@@ -95,7 +95,7 @@ const handleSubmit = (e)=>{
           placeholder='email' 
           name='email'
           onChange={(e)=>setUserDeatils({...userDeatils, email:e.target.value})}
-          className='p-3 w-80 rounded-xl' />
+          className='p-3 w-80 rounded-xl focus:outline-none border border-yellow-100 focus:border-2 focus:border-yellow-300' />
           {
             valid? <></> : <p className='text-red-600 text-[13px]'>{errors.email}</p>
           }
@@ -107,7 +107,7 @@ const handleSubmit = (e)=>{
           placeholder='password' 
           name='password'
           onChange={(e)=>setUserDeatils({...userDeatils, password:e.target.value})}
-          className='p-3 w-80 rounded-xl' />
+          className='p-3 w-80 rounded-xl focus:outline-none border border-yellow-100 focus:border-2 focus:border-yellow-300' />
           {
             valid? <></> : <p className='text-red-600 text-[13px]'>{errors.password}</p>
           }
@@ -119,7 +119,7 @@ const handleSubmit = (e)=>{
           placeholder='confirm password' 
           name='confirmPassword'
           onChange={(e)=>setUserDeatils({...userDeatils, confirmPassword:e.target.value})}
-          className='p-3 w-80 rounded-xl' />
+          className='p-3 w-80 rounded-xl focus:outline-none border border-yellow-100 focus:border-2 focus:border-yellow-300' />
           {
             valid? <></> : <p className='text-red-600 text-[13px]'>{errors.confirmPassword}</p>
           }
@@ -128,7 +128,7 @@ const handleSubmit = (e)=>{
 
             <button 
             type='submit' 
-            className='  w-20 p-1 rounded-md bg-slate-500 text-white hover:bg-slate-700 '
+            className='  w-20 p-1 rounded-md bg-white text-customText border-2  border-yellow-200 hover:bg-yellow-300 hover:text-white font-semibold '
             >Sign Up</button>
 
         </form>

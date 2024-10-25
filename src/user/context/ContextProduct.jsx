@@ -1,5 +1,4 @@
 import axios from "axios";
-import { use } from "framer-motion/client";
 import React, { createContext, useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
@@ -110,6 +109,19 @@ const ContextProduct = ({ children }) => {
   // },[])
 
 
+  // useEffect(() => {
+  //   if (!iD) {
+  //     toast("please login first");
+  //   } else {
+  //     axios
+  //       .get(`http://localhost:5999/users/${iD}`)
+  //       .then((res) => {
+  //         setCart(res.data.cart)
+  //       }).catch((err)=> console.log(err)
+  //       )
+  //   }
+  // }, [iD,cart]);
+
   const activeStatus = localStorage.getItem("active");
   const handleAddToCart = (elem) => {
     if (!iD) {
@@ -123,14 +135,14 @@ const ContextProduct = ({ children }) => {
       let isPresent = cart.some((item) => item.id === elem.id);
       if (isPresent) {
         toast("item already added");
+        console.log(iD);
+        
       } else {
         axios
           .patch(`http://localhost:5999/users/${iD}`, {
             cart: [...cart, elem],
           })
           .then((res) => {
-            // console.log("cart added to db");
-            // setCart([...cart, elem]);
             setCart((prevCart) => [...prevCart, elem]);
             toast("cart added successfully");
           })

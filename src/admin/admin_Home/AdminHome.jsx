@@ -6,6 +6,7 @@ import { context_page } from "../../user/context/ContextProduct";
 import AdminProducts from "../admin_products/AdminProducts";
 import AdminUsers from "../admin_users/AdminUsers";
 import { useNavigate } from "react-router-dom";
+import ChartComponent from "./ChartComponent";
 
 const AdminHome = () => {
   // const [islogin, setIsLogin] = useState(null);
@@ -100,38 +101,42 @@ const AdminHome = () => {
         {(page === 'dashboard') ? (
             <>
             <div className="">
-          <h1 className="ml-10 pt-5 text-cutomBlueAdmin font-bold text-2xl">DashBoard.</h1>
-        {/* </div>
-        <div className="w-full h-full flex flex-wrap items-center justify-center ">
-          <div className="flex flex-wrap gap-10  p-14 py-16 shadow-2xl items-center justify-center rounded-2xl bg-cutomBlueAdmin">
-            <div className="w-44 h-44  flex items-center rounded-2xl flex-col justify-center bg-white shadow-2xl">
-              <h1>Total Products</h1>
-              <h1>{products.length}</h1>
-            </div>
-            <div className="w-44 h-44 border flex items-center  shadow-2xl bg-white rounded-2xl justify-center flex-col">
-              <h1>Total Users</h1>
-              <h1>{users.length}</h1>
-            </div>
-            <div className="w-44 h-44 border flex items-center shadow-2xl bg-white justify-center flex-col rounded-2xl">
-              <h1>Total Orders</h1>
-              <h1>{allOrders.length}</h1>
-            </div>
-            <div className="w-44 h-44 border flex items-center shadow-2xl bg-white rounded-2xl justify-center flex-col">
-              <h1>Total Earnings</h1>
-              <h1>{totalEarnings}</h1>
-            </div>
-          </div> */}
-          <div className="w-full h-screen bg-white flex flex-wrap ">
-            <div className="flex-1  flex flex-wrap flex-col mb-24 mt-10 mx-10 gap-10">
-              <div className="bg-gray-300 flex-1 rounded-3xl hover:drop-shadow-2xl shadow-2xl"></div>
-              <div className="flex-1 bg-gray-300 rounded-3xl shadow-2xl hover:drop-shadow-2xl "></div>
-            </div>
-            <div className="flex-1  flex flex-wrap flex-col mb-24 mt-10 mx-10 gap-10">
-            <div className="bg-gray-300 flex-1 rounded-3xl hover:drop-shadow-2xl shadow-2xl"></div>
-            <div className="flex-1 bg-gray-300 rounded-3xl hover:drop-shadow-2xl shadow-2xl"></div>
-            </div>
-          </div>
+          <h1 className="pl-10 pt-5 text-cutomBlueAdmin font-bold text-2xl bg-gray-100">DashBoard.</h1>
         </div>
+        <div className="min-h-screen bg-gray-100 p-10">
+  {/* Dashboard Container */}
+  <div className="w-full flex flex-col items-center justify-center mt-24">
+    
+    {/* Stats Section */}
+    <div className="w-full max-w-5xl p-8 py-12 shadow-2xl rounded-3xl bg-cutomBlueAdmin flex flex-wrap gap-10 items-center justify-evenly">
+      
+      {/* Card: Total Products */}
+      <div className="w-52 h-52 flex flex-col items-center justify-center bg-white shadow-lg rounded-xl transition-transform transform hover:scale-105">
+        <h2 className="text-lg font-semibold text-gray-700">Total Products</h2>
+        <p className="text-4xl font-bold text-blue-600">{products.length}</p>
+      </div>
+
+      {/* Card: Total Users */}
+      <div className="w-52 h-52 flex flex-col items-center justify-center bg-white shadow-lg rounded-xl transition-transform transform hover:scale-105">
+        <h2 className="text-lg font-semibold text-gray-700">Total Users</h2>
+        <p className="text-4xl font-bold text-blue-600">{users.length}</p>
+      </div>
+
+      {/* Card: Total Orders */}
+      <div className="w-52 h-52 flex flex-col items-center justify-center bg-white shadow-lg rounded-xl transition-transform transform hover:scale-105">
+        <h2 className="text-lg font-semibold text-gray-700">Total Orders</h2>
+        <p className="text-4xl font-bold text-blue-600">{allOrders.length}</p>
+      </div>
+
+      {/* Card: Total Earnings */}
+      <div className="w-52 h-52 flex flex-col items-center justify-center bg-white shadow-lg rounded-xl transition-transform transform hover:scale-105">
+        <h2 className="text-lg font-semibold text-gray-700">Total Earnings</h2>
+        <p className="text-4xl font-bold text-blue-600">${totalEarnings}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
             </>
         ):(page === 'products') ? (<AdminProducts />) 
         : (page === 'users') && (<AdminUsers />)}

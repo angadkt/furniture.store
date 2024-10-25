@@ -8,11 +8,29 @@
       "confirmPassword": "12345678",
       "cart": [
         {
-          "id": "12",
-          "name": "Pillow Top Mattress",
-          "category": "Mattresses",
-          "image": "https://ii1.pepperfry.com/media/catalog/product/z/e/1100x1210/zenimo-pillow-top-8-inch-pocketed-spring-single-size-mattress--with-1-free-pillow--zenimo-pillow-top-15hw8a.jpg",
-          "details": "Extra plush pillow top mattress for added comfort and luxury.",
+          "id": "4",
+          "name": "Loveseat Sofa",
+          "category": "Sofa & Seating",
+          "image": "https://i.pinimg.com/736x/87/49/71/874971ef6cd3ca41e0677aad333f6745.jpg",
+          "details": "Compact and cozy loveseat sofa, perfect for small apartments.",
+          "price": 349,
+          "quantity": 1
+        },
+        {
+          "id": "5",
+          "name": "Chaise Lounge",
+          "category": "Sofa & Seating",
+          "image": "https://i.pinimg.com/564x/cc/da/73/ccda73055b2f5de07c84f887113f70ea.jpg",
+          "details": "Elegant chaise lounge with soft cushions, perfect for relaxation.",
+          "price": 599,
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "L-Shape Sectional",
+          "category": "Sofa & Seating",
+          "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
+          "details": "Spacious L-shaped sectional sofa, ideal for large families.",
           "price": 1199,
           "quantity": 1
         }
@@ -162,12 +180,12 @@
       "confirmPassword": "123456",
       "cart": [
         {
-          "id": "4",
-          "name": "Loveseat Sofa",
+          "id": "2",
+          "name": "Leather Recliner",
           "category": "Sofa & Seating",
-          "image": "https://i.pinimg.com/736x/87/49/71/874971ef6cd3ca41e0677aad333f6745.jpg",
-          "details": "Compact and cozy loveseat sofa, perfect for small apartments.",
-          "price": 349,
+          "image": "https://i.pinimg.com/736x/3c/18/6b/3c186b5f6b94f817f735c512cda6303d.jpg",
+          "details": "A luxurious leather recliner with adjustable positions for maximum comfort.",
+          "price": 799,
           "quantity": 1
         }
       ],
@@ -238,7 +256,7 @@
     },
     {
       "id": "3",
-      "name": "L-Shaped Sectional",
+      "name": "L-Shape Sectional",
       "category": "Sofa & Seating",
       "image": "https://i.pinimg.com/564x/e4/89/e6/e489e64362667a2637213e883ff4de79.jpg",
       "details": "Spacious L-shaped sectional sofa, ideal for large families.",

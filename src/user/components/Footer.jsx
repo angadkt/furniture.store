@@ -3,58 +3,61 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-10 mt-20">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          {/* About Us Section */}
-          <div>
-            <h2 className="text-2xl font-bold mb-4">About Us</h2>
-            <p>
-             details
-            </p>
-          </div>
-          
-          {/* Quick Links Section */}
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Quick Links</h2>
-            <ul>
-              <li><a href="/about" className="hover:text-gray-400">About</a></li>
-              <li><a href="/services" className="hover:text-gray-400">Services</a></li>
-              <li><a href="/contact" className="hover:text-gray-400">Contact</a></li>
-              <li><a href="/privacy" className="hover:text-gray-400">Privacy Policy</a></li>
-            </ul>
-          </div>
-          
-          {/* Contact & Social Section */}
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
-            <p>Urban Oak</p>
-            <p>Email: urbanoak@gmail.com</p>
-            <p>Phone: 9876543012</p>
-            
-            <div className="mt-4 flex space-x-4">
-              <a href="https://facebook.com" className="text-gray-400 hover:text-white">
-                <FaFacebook size={24} />
-              </a>
-              <a href="https://twitter.com" className="text-gray-400 hover:text-white">
-                <FaTwitter size={24} />
-              </a>
-              <a href="https://instagram.com" className="text-gray-400 hover:text-white">
-                <FaInstagram size={24} />
-              </a>
-              <a href="https://linkedin.com" className="text-gray-400 hover:text-white">
-                <FaLinkedin size={24} />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 border-t border-gray-700 pt-6 text-center">
-          <p>&copy; 2024 Urban Oak. All rights reserved.</p>
+    <footer className="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white py-12">
+  <div className="container mx-auto px-6 md:px-12">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+      
+      {/* About Us Section */}
+      <div>
+        <h2 className="text-3xl font-bold text-white mb-4">About Us</h2>
+        <p className="text-gray-400 leading-relaxed">
+          Urban Oak is a platform that provides world-class products and services to help you achieve the lifestyle you deserve. We focus on quality and satisfaction.
+        </p>
+      </div>
+      
+      {/* Quick Links Section */}
+      <div>
+        <h2 className="text-3xl font-bold text-white mb-4">Quick Links</h2>
+        <ul className="space-y-2">
+          <li><a href="/about" className="hover:text-blue-400 transition-colors">About</a></li>
+          <li><a href="/services" className="hover:text-blue-400 transition-colors">Services</a></li>
+          <li><a href="/contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
+          <li><a href="/privacy" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+        </ul>
+      </div>
+      
+      {/* Contact & Social Section */}
+      <div>
+        <h2 className="text-3xl font-bold text-white mb-4">Contact Us</h2>
+        <p className="text-gray-400">Urban Oak</p>
+        <p className="text-gray-400">Email: urbanoak@gmail.com</p>
+        <p className="text-gray-400">Phone: 9876543012</p>
+        
+        <div className="mt-6 flex justify-center md:justify-start space-x-6">
+          <a href="https://facebook.com" className="text-gray-400 hover:text-blue-500 transition-colors">
+            <FaFacebook size={28} />
+          </a>
+          <a href="https://twitter.com" className="text-gray-400 hover:text-blue-400 transition-colors">
+            <FaTwitter size={28} />
+          </a>
+          <a href="https://instagram.com" className="text-gray-400 hover:text-pink-500 transition-colors">
+            <FaInstagram size={28} />
+          </a>
+          <a href="https://linkedin.com" className="text-gray-400 hover:text-blue-600 transition-colors">
+            <FaLinkedin size={28} />
+          </a>
         </div>
       </div>
-    </footer>
+
+    </div>
+    
+    {/* Divider */}
+    <div className="mt-12 border-t border-gray-700 pt-6 text-center">
+      <p className="text-gray-500">&copy; 2024 Urban Oak. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
   );
 };
 
