@@ -16,6 +16,7 @@ export default {
         customCardAdmin: '#CDC2A5',
         customButtonAdmin: '#F0F0F0',
         customText: '#4764fd',
+        customCC: '#dfbc60',
       },
     },
   },

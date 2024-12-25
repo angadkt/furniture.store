@@ -21,7 +21,7 @@ const SignIn = () => {
   const [errors, setErrors] = useState({});
   const [valid, setValild] = useState(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let isvalid = true;
     let validationErrors = {};
@@ -42,46 +42,76 @@ const SignIn = () => {
       validationErrors.password = "Password must be at least 6 characters long";
     }
 
-    if (
-      userDetails.email === "admin123@gmail.com" &&
-      userDetails.password === "12345678"
-    ) {
-      toast.success("Loginned to admin panel");
-      navigate("/adminhome");
-      localStorage.setItem("is_admin", true);
+    // if (
+    //   userDetails.email === "admin123@gmail.com" &&
+    //   userDetails.password === "12345678"
+    // ) {
+    //   toast.success("Loginned to admin panel");
+    //   navigate("/adminhome");
+    //   localStorage.setItem("is_admin", true);
+    // }
+
+    // axios
+    //   .get("http://localhost:5999/users")
+    //   .then((res) => {
+    //     res.data.map((user) => {
+    //       // console.log('res:',res)
+
+    //       if (user.email === userDetails.email) {
+    //         if (user.password === userDetails.password) {
+    //           toast.success("Login successful");
+    //           navigate("/");
+    //           localStorage.setItem("id", user.id);
+    //           localStorage.setItem("username", user.username);
+    //           localStorage.setItem("email", user.email);
+    //         } else {
+    //           isvalid = false;
+    //           validationErrors.password = "Invalid password";
+    //         }
+    //       } else if (userDetails.email !== "") {
+    //         isvalid = false;
+    //         validationErrors.email = "Email does not exist";
+    //       }
+    //     });
+    //     setErrors(validationErrors);
+    //     setValild(isvalid);
+    //   })
+    //   .catch((err) => console.log(err));
+    // console.log(localStorage);
+    try {
+      const response = await axios.post("http://localhost:4000/api/login", {
+        email: userDetails.email,
+        password: userDetails.password,
+      });
+      // console.log("resdata",response.data)
+      // console.log(response.data.message);
+      // if(response.data.success === false){
+      //    alert("check the credentials")
+      // const role = response.data.data
+      // console.log(`role` ,role);
+      
+      if (response.data.data.role === "admin") {
+        toast.success(response.data.message);
+        const userId = response.data.data._id;
+        navigate("/adminhome")
+        localStorage.setItem("is_admin", true)
+      } else {
+        // console.log(response.data)
+        toast.success(response.data.message);
+        const userId = response.data.data._id;
+        localStorage.setItem("id", userId);
+        navigate("/");
+      }
+    } catch (err) {
+      // console.log(response)
+      // console.log("errdata",err.response)
+      // console.log(`error occured ${err}`);
+      if (err.response.status == 404) {
+        console.log(err.response.data.message);
+        toast.warn(err.response.data.message);
+      }
     }
-
-    axios
-      .get("http://localhost:5999/users")
-      .then((res) => {
-        res.data.map((user) => {
-          // console.log('res:',res)
-
-          if (user.email === userDetails.email) {
-            if (user.password === userDetails.password) {
-              toast.success("Login successful");
-              navigate("/");
-              localStorage.setItem("id", user.id);
-              localStorage.setItem("username", user.username);
-              localStorage.setItem("email", user.email);
-            } else {
-              isvalid = false;
-              validationErrors.password = "Invalid password";
-            }
-          } else if (userDetails.email !== "") {
-            isvalid = false;
-            validationErrors.email = "Email does not exist";
-          }
-        });
-        setErrors(validationErrors);
-        setValild(isvalid);
-      })
-      .catch((err) => console.log(err));
-    console.log(localStorage);
   };
-
-
-  
 
   return (
     <div
@@ -90,10 +120,7 @@ const SignIn = () => {
     >
       <div className="  p-20 rounded-2xl bg-white  border-2 border-yellow-100 drop-shadow-[0_10px_10px_rgba(234,179,8,0.4)]">
         <form onSubmit={handleSubmit} className="flex flex-col flex-wrap gap-4">
-        <span className="text-4xl font-bold text-customText">
-  Sign In
-</span>
-
+          <span className="text-4xl font-bold text-customText">Sign In</span>
 
           <input
             type="email"
@@ -126,10 +153,9 @@ const SignIn = () => {
           )}
 
           {/* <Link to="/"> */}
-          <button 
-          // className="  w-20 p-1 rounded-md bg-slate-500 text-white hover:bg-slate-700"
-          className="  w-20 p-1 rounded-md bg-white text-customText border-2  border-yellow-200 hover:bg-yellow-300 hover:text-white font-semibold"
-          
+          <button
+            // className="  w-20 p-1 rounded-md bg-slate-500 text-white hover:bg-slate-700"
+            className="  w-20 p-1 rounded-md bg-white text-customText border-2  border-yellow-200 hover:bg-yellow-300 hover:text-white font-semibold"
           >
             Sign In
           </button>
@@ -137,7 +163,10 @@ const SignIn = () => {
         </form>
         <span className="text-sm ">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-red-500 text-sm hover:text-red-800">
+          <Link
+            to="/signup"
+            className="text-red-500 text-sm hover:text-red-800"
+          >
             Sign up
           </Link>
         </span>

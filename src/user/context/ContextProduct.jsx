@@ -44,11 +44,11 @@ const ContextProduct = ({ children }) => {
         orders: [...(fetchedUser.orders || []), orderNew],
         cart: [],
       };
-      console.log(updatedUser);
+      console.log( 'latest user',updatedUser);
 
-      await axios.put(`http://localhost:5999/users/${userId}`, updatedUser);
+       await axios.put(`http://localhost:5999/users/${userId}`, updatedUser);
 
-      setOrders(updatedUser.orders);
+      setOrders((prevOrders) => [...prevOrders, orderNew])
     } catch (err) {
       console.log("error getting user data", err);
     }
@@ -84,18 +84,19 @@ const ContextProduct = ({ children }) => {
     fetchData();
   }, []);
 
-  // ========================================= products data ==================================================
+  // ========================================= fetching   products data ==================================================
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5999/products");
-        setProducts(response.data);
+        const response = await axios.get("http://localhost:4000/api/products");
+        setProducts(response.data.data); 
+        // console.log(response.data.data)
       } catch (err) {
-        console.log("error");
+        console.log("err");
       }
     };
     fetchData();
-  }, []);
+  },[]);
 
   // ====================================  handle Add to cart=======================================================
   // useEffect(()=>{
@@ -126,8 +127,10 @@ const ContextProduct = ({ children }) => {
   const handleAddToCart = (elem) => {
     if (!iD) {
       toast("Please login");
+      console.log(iD);
+      
     } else if (activeStatus == "false") {
-      toast("your account blocked");
+      toast("your account is blocked");
     } else {
       console.log("user already logged in", iD);
       console.log(typeof activeStatus);

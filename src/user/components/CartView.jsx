@@ -38,7 +38,7 @@ const CartView = () => {
       {cart.map((item) => (
         <div
           key={item.id}
-          className=" mx-20 p-4 rounded-xl shadow-xl flex-wrap flex gap-4"
+          className=" mx-20 p-4 rounded-xl hover:shadow-xl border-2 border-yellow-100 flex-wrap flex gap-4 "
         >
           <div>
             <img
@@ -49,10 +49,10 @@ const CartView = () => {
           </div>
           <div>
             <h1>{item.name}</h1>
-            <h1>MRP : {item.price}</h1>
+            <h1>MRP : ₹ <span className="font-medium">{item.price} /-</span></h1>
             <button
               onClick={() => handleRemoveCart(item)}
-              className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-4 py-1 text-center me-2 mb-2"
+              className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800   font-medium rounded-lg text-sm px-4 py-1 text-center me-2 mb-2"
             >
               Remove
             </button>
@@ -78,10 +78,10 @@ const CartView = () => {
       {cart.length === 0 ? (
         <h1 className="text-center">No items in cart</h1>
       ) : (
-        <div className=" bg-customDarkPurple flex justify-center gap-10  mx-16 p-3 rounded-lg shadow-2xl">
+        <div className=" bg-yellow-100 flex justify-center gap-10  mx-16 p-3 rounded-lg shadow-2xl">
           <h1 className="text-bold">
             TOTAL PRICE :{" "}
-            <span className="text-red-500">{updatedTotalPrice} /-</span>
+            <span className="text-red-500 font-medium">{updatedTotalPrice} /-</span>
           </h1>
           <button
             onClick={() => navigate("/payment")}

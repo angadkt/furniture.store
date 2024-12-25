@@ -5,29 +5,57 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Toaster} from 'react-hot-toast';
 import Footer from "../components/Footer";
+import axios from "axios";
+import Flag from "../components/pagination/Flag.jsx";
 
 
 const AllProducts = () => {
   const { products, handleAddToCart } = useContext(context_page);
 
-  const [search, setSearch] = useState("");
-  const [searchProducts, setSearchProducts] = useState(products);
-  const [categoriezedProduct, setCategorizedProduct] = useState(products);
+  // const [search, setSearch] = useState("");
+  // const [searchProducts, setSearchProducts] = useState(products);
+  
+  const [categoriezedProduct, setCategorizedProduct] = useState([]);
+
+  //pagination 
+  const [currentPage , setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(10)
+
+  const lastItemIndex = currentPage * itemsPerPage;
+  const firstItemtIndex  = lastItemIndex - itemsPerPage
+  const currentItems = categoriezedProduct.slice(firstItemtIndex,lastItemIndex)
+
+
+  useEffect(()=>{
+    if(products.length > 0){
+      setCategorizedProduct(products)
+    }
+  },[products])
+
+
+  useEffect
 
   const navigate = useNavigate();
-
 
 
   // =============================== onCategoryHandle ===================================
 
 
-const handleCategory = (category) => {
+const handleCategory = async (category) => {
+  
   if (category === "All Products") {
     setCategorizedProduct(products);
   }
   else{
-    const productFiltered = products.filter((item) => item.category === category)
-  setCategorizedProduct(productFiltered);
+    try{
+      const response = await axios.get('http://localhost:4000/api/getproductscategory', {params:{category}})
+      const filteredData = response.data.data
+      setCategorizedProduct(filteredData)
+    }catch(err){
+      console.log(err);
+      
+    }
+    
   }
 }
 
@@ -36,27 +64,27 @@ const handleCategory = (category) => {
 
   // ======================== search ==========================================
   
-  useEffect(() => {
-    if (search) {
-      const filteredProducts = categoriezedProduct.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
-    );
-    setSearchProducts(filteredProducts);
-  } else {
-    setSearchProducts(categoriezedProduct);
-  }
-}, [search, categoriezedProduct]);
+//   useEffect(() => {
+//     if (search) {
+//       const filteredProducts = categoriezedProduct.filter((item) =>
+//         item.name.toLowerCase().includes(search.toLowerCase())
+//     );
+//     setSearchProducts(filteredProducts);
+//   } else {
+//     setSearchProducts(categoriezedProduct);
+//   }
+// }, [search, categoriezedProduct]);
 
 
-useEffect(()=>{
-  setCategorizedProduct(products);
-  setSearchProducts(products);
-}, [products])
+// useEffect(()=>{
+//   setCategorizedProduct(products);
+//   setSearchProducts(products);
+// }, [products])
 // ====================================================================
 
-useEffect(() => {
-  console.log("Updated category products: ", categoriezedProduct);
-}, [categoriezedProduct]);
+// useEffect(() => {
+//   console.log("Updated category products: ", categoriezedProduct);
+// }, [categoriezedProduct]);
 
 // Rendering section
 if (!products || products.length === 0) {
@@ -65,12 +93,15 @@ if (!products || products.length === 0) {
 
 // ================================================
     
+
+
+
   return (
     <div className="mt-20 bg-transparent">
       <div className="w-full h-full   md:px-16 px-8 mt-5 mb-16">
         <div className="w-full flex justify-center">
           <div class="max-w-md mx-auto">
-            <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-customCardColor overflow-hidden mt-5 ">
+            <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden mt-5 ">
               <div class="grid place-items-center h-full w-12 text-gray-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -90,9 +121,9 @@ if (!products || products.length === 0) {
 
               <input
                 class="peer h-full w-full outline-none text-sm text-gray-700 pr-2 bg-customCardColor"
-                onChange={(e) => setSearch(e.target.value)}
+                // onChange={(e) => setSearch(e.target.value)}
                 type="search"
-                value={search}
+                // value={search}
                 id="search"
                 placeholder="Search something .."
               />
@@ -119,18 +150,20 @@ if (!products || products.length === 0) {
           className="focus:border-b focus:border-black"
           onClick={()=>handleCategory("Lamps & Lighting")}>LAMPS & LIGHTS</button>
         </div>
-        <div className="w-full h-full flex justify-center flex-wrap gap-10">
-          {categoriezedProduct.length > 0
-            ? searchProducts.map((item) => (
+        <div className="w-full h-full flex justify-center flex-wrap gap-10 ">
+          {currentItems.length > 0
+            ? currentItems.map((item,index) => (
                 <div
-                  className="w-auto h-auto rounded-xl  shadow-2xl bg-customCardColor hover:scale-x-105 hover:scale-105 hover:duration-150 "
-                  key={item.id}
+                  className="w-auto h-auto rounded-xl  shadow-xl  border bg-white   p-4 "
+                  key={index}
                 >
+                  <div className=" overflow-hidden object-contain relative rounded-xl">
                   <img
-                    className="w-72 h-72 object-cover rounded-xl p-4"
-                    src={item.image}
+                    className="w-72 h-72 object-cover rounded-xl  hover:scale-x-105 hover:scale-105 hover:duration-300"
+                    src={item.images[0]}
                     alt={item.name}
                   />
+                  </div>
                   <div className="mt-4 ml-4 mb-2">
                     <h1 className="text-xl font-semibold">{item.name}</h1>
                     <h1 className=" font-semibold text-red-500">
@@ -153,16 +186,18 @@ if (!products || products.length === 0) {
                   </div>
                 </div>
               ))
-            : products.map((item) => (
+            : currentItems.map((item,index) => (
                 <div
-                  className="w-auto h-auto rounded-xl  shadow-2xl bg-customCardColor hover:scale-x-105 hover:scale-105 hover:duration-150 "
-                  key={item.id}
+                  className="w-auto h-auto rounded-xl  shadow-2xl   object-contain overflow-hidden p-4"
+                  key={index}
                 >
+                  <div className="h-72 w-72 overflow-hidden  object-contain relative rounded-xl">
                   <img
-                    className="w-72 h-72 object-cover rounded-xl p-4"
-                    src={item.image}
+                    className="w-72 h-72 object-cover rounded-xl  hover:scale-x-105 hover:scale-105 hover:duration-300"
+                    src={item.images[0]}
                     alt={item.name}
                   />
+                  </div>
                   <div className="mt-4 ml-4 mb-2">
                     <h1 className="text-xl font-semibold">{item.name}</h1>
                     <h1 className=" font-semibold text-red-500">
@@ -187,6 +222,9 @@ if (!products || products.length === 0) {
               ))}
         </div>
       </div>
+      {/* <Pagination totalItems = {categoriezedProduct.length} itemsPerPage={itemsPerPage} /> */}
+      {/* <Pagination /> */}
+      <Flag totalItems = {categoriezedProduct.length} itemsPerPage={itemsPerPage} setCurrentPage={setCurrentPage} />
       <Toaster />
       <Footer />
     </div>

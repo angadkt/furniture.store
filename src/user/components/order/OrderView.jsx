@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-// import { axios } from "axios";
 
 
 
@@ -23,11 +22,13 @@ const OrderView = () => {
     axios.get(`http://localhost:5999/users/${userId}`)
       .then((res)=>{
         setSpecificOrder(res.data.orders)
+        
       })
       .catch((err)=> console.log(err)
       )
-  },[userId])
+  },[userId , specificOrder])
 
+  
 
 
 
