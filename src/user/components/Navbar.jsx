@@ -17,8 +17,7 @@ const Navbar = () => {
     console.log("No ID found in localStorage.");
   }
 
-  const currentUser = users.find((item) => item.id === id);
-  console.log("current user", currentUser);
+ 
 
   const Links = [
     { name: "Home", link: "/" },
@@ -30,15 +29,12 @@ const Navbar = () => {
           Cart <FaOpencart size={26} />
         </div>
       ),
-      link: "/cart",
+      link: "/cart"
     },
   ];
 
   // ======================== sign out function ===================================
   const handleSignOut = () => {
-    // localStorage.removeItem("id");
-    // localStorage.removeItem("username");
-    // localStorage.removeItem("password");
     localStorage.clear()
   };
 
@@ -78,7 +74,7 @@ const Navbar = () => {
         <div className="flex-1  md:flex justify-center items-center hidden">
           <ul className="flex flex-wrap gap-4 text-lg">
             {Links.map((x, i) => (
-              <NavLink key={i} to={x.link}>
+              <NavLink key={i} to={x.link} >
                 {x.name}
               </NavLink>
             ))}

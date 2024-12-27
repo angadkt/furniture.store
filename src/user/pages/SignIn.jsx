@@ -41,54 +41,13 @@ const SignIn = () => {
       isvalid = false;
       validationErrors.password = "Password must be at least 6 characters long";
     }
-
-    // if (
-    //   userDetails.email === "admin123@gmail.com" &&
-    //   userDetails.password === "12345678"
-    // ) {
-    //   toast.success("Loginned to admin panel");
-    //   navigate("/adminhome");
-    //   localStorage.setItem("is_admin", true);
-    // }
-
-    // axios
-    //   .get("http://localhost:5999/users")
-    //   .then((res) => {
-    //     res.data.map((user) => {
-    //       // console.log('res:',res)
-
-    //       if (user.email === userDetails.email) {
-    //         if (user.password === userDetails.password) {
-    //           toast.success("Login successful");
-    //           navigate("/");
-    //           localStorage.setItem("id", user.id);
-    //           localStorage.setItem("username", user.username);
-    //           localStorage.setItem("email", user.email);
-    //         } else {
-    //           isvalid = false;
-    //           validationErrors.password = "Invalid password";
-    //         }
-    //       } else if (userDetails.email !== "") {
-    //         isvalid = false;
-    //         validationErrors.email = "Email does not exist";
-    //       }
-    //     });
-    //     setErrors(validationErrors);
-    //     setValild(isvalid);
-    //   })
-    //   .catch((err) => console.log(err));
-    // console.log(localStorage);
     try {
       const response = await axios.post("http://localhost:4000/api/login", {
         email: userDetails.email,
         password: userDetails.password,
       });
-      // console.log("resdata",response.data)
-      // console.log(response.data.message);
-      // if(response.data.success === false){
-      //    alert("check the credentials")
-      // const role = response.data.data
-      // console.log(`role` ,role);
+      // console.log(response.data)
+     
       
       if (response.data.data.role === "admin") {
         toast.success(response.data.message);
@@ -96,16 +55,18 @@ const SignIn = () => {
         navigate("/adminhome")
         localStorage.setItem("is_admin", true)
       } else {
-        // console.log(response.data)
         toast.success(response.data.message);
         const userId = response.data.data._id;
+        const isBlocked = response.data.data.isBlocked
+        const token = response.data.token
+        console.log("token", token);
         localStorage.setItem("id", userId);
+        localStorage.setItem("isBlocked", isBlocked);
+        localStorage.setItem("token", token)
         navigate("/");
       }
     } catch (err) {
-      // console.log(response)
-      // console.log("errdata",err.response)
-      // console.log(`error occured ${err}`);
+      
       if (err.response.status == 404) {
         console.log(err.response.data.message);
         toast.warn(err.response.data.message);

@@ -10,7 +10,7 @@ import Flag from "../components/pagination/Flag.jsx";
 
 
 const AllProducts = () => {
-  const { products, handleAddToCart } = useContext(context_page);
+  const { products,addToCart } = useContext(context_page);
 
   // const [search, setSearch] = useState("");
   // const [searchProducts, setSearchProducts] = useState(products);
@@ -92,7 +92,10 @@ if (!products || products.length === 0) {
 }
 
 // ================================================
-    
+    // console.log("current items",currentItems)
+
+
+
 
 
 
@@ -171,13 +174,13 @@ if (!products || products.length === 0) {
                     </h1>
                     <div className="flex justify-between mt-2">
                       <button
-                        onClick={() => handleAddToCart(item)}
+                        onClick={() => addToCart(item._id, item.quantity)}
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2 text-center me-2 mb-2"
                       >
                         Add to Cart
                       </button>
                       <button
-                        onClick={() => navigate(`/products/${item.id}`)}
+                        onClick={() => navigate(`/products/${item._id}`)}
                         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2 text-center me-2 mb-2"
                       >
                         View Details
@@ -205,7 +208,7 @@ if (!products || products.length === 0) {
                     </h1>
                     <div className="flex justify-between ">
                       <button
-                        onClick={() => handleAddToCart(item)}
+                        onClick={() => addToCart(item.id ,item.quantity)}
                         className=" p-1 rounded-md px-2 mt-2 bg-blue-500 text-white hover:bg-blue-600"
                       >
                         Add to Cart
