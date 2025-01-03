@@ -1,17 +1,61 @@
-import React, { useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { context_page } from '../../user/context/ContextProduct';
+import axios from 'axios';
+import ConfirmModal from '../../user/components/confirmationModal/ConfirmModal';
+import toast from 'react-hot-toast';
 
 const UserInfo = () => {
+    const navigate = useNavigate()
     const { id } = useParams();
-    const { users, handleDeleteUser, active, handleUserStatus } = useContext(context_page);
+    const [modalOpen, setModalOpen] = useState(false)
+    
+    const { users ,blockAndUnblockUser, fetchUsers ,setUsers , handleRemoveUser} = useContext(context_page);
+    const [cartProducts , setCartProducts] = useState([])
+    // const [isBlocked,setIsBlocked] = useState(false)
 
-    const currentUser = users.find((user) => String(user.id) === String(id));
+    const currentUser = users.find((user) => String(user._id) === String(id));
 
     if (!currentUser) {
         return <div className="text-center text-red-600">User not found</div>;
     }
     console.log(currentUser)
+
+    
+    
+    const isBlocked =  currentUser.isBlocked
+
+    const handleUserStatus = (userid) => {
+      blockAndUnblockUser(userid)
+        .then(() => {
+          const updatedUsers = users.map((user) =>
+            user._id === userid ? { ...user, isBlocked: !user.isBlocked } : user
+          );
+          toast("user status updated")
+        })
+        .finally(() => {
+          fetchUsers(); 
+        });
+    };
+    const deleteUser = () => {
+      handleRemoveUser(currentUser._id)
+      fetchUsers()
+      navigate(-1)
+    }
+
+    
+
+    const handleModalOpen = () =>{
+      setModalOpen(true)
+      console.log("modal open" ,modalOpen);
+      
+    }
+
+    const modalClose = () => {
+      setModalOpen(false)
+    }
+
+
 
     return (
         <div className="w-full h-screen flex justify-center items-center bg-gray-100 ">
@@ -27,54 +71,20 @@ const UserInfo = () => {
         alt="Profile"
       />
       <div>
-        <h1 className="text-2xl font-bold text-gray-700">Name: {currentUser.username}</h1>
+        <h1 className="text-2xl font-bold text-gray-700">Name: {currentUser.name}</h1>
         <h1 className="text-lg font-medium text-gray-600">Email: {currentUser.email}</h1>
         <div className='flex gap-3 '>
         <button 
-        onClick={()=>handleUserStatus(currentUser)} 
-        className={`px-2  text-white  ${active? "bg-yellow-500 hover:bg-yellow-600" : "bg-green-500 hover:bg-green-700"}`}>{active? "BLOCK" : "UNBLOCK"}</button>
+        onClick={()=>handleUserStatus(currentUser._id)} 
+        className={`px-2  text-white  ${!isBlocked ? "bg-yellow-500 hover:bg-yellow-600" : "bg-green-500 hover:bg-green-700"}`}>{isBlocked ? "UNBLOCK" : "BLOCK"}</button>
         <button 
-        onClick={()=>handleDeleteUser(currentUser)}
+        onClick={handleModalOpen}
         className='px-2 bg-red-600 text-white hover:shadow-2xl  hover:bg-red-700'>DELETE</button>
         </div>
       </div>
     </div>
-
-    {/* Cart Section */}
-    <div>
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6 border-b-2 pb-2 border-gray-200 ">User Cart</h2>
-      {
-        currentUser.cart.length > 0 ? 
-        currentUser.cart.map((item,index)=>{
-          return (
-            <div className=''>
-            <div  key={item.index}>
-            <div
-            key={item.id}
-            className="p-4 rounded-lg shadow-md bg-gray-50 hover:bg-gray-100 transition-all flex items-center gap-4 mb-4"
-          >
-            <img
-              className="w-20 h-20 rounded-md border border-gray-300"
-              src={item.image}
-              alt={item.name}
-            />
-            <div>
-              <h3 className="text-lg font-semibold text-gray-700">Product: {item.name}</h3>
-              <p className="text-sm text-gray-500">MRP (per product): {item.price}</p>
-              <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
-            </div>
-          </div>
-            </div>
-            </div>
-          )
-        })
-         :
-         <>
-         <p>product not found</p>
-         </>
-      }
-    </div>
   </div>
+  <ConfirmModal modalOpen={modalOpen} setModalOpen={setModalOpen} deleteUser={deleteUser}/>
 </div>
 
     )

@@ -5,8 +5,8 @@ import { context_page } from '../context/ContextProduct';
 import { useNavigate } from 'react-router-dom'
 
 const PayForm = () => {
-  const {handleAddToOrders } = useContext(context_page);
-  const navigate = useNavigate()
+  // const {handleAddToOrders } = useContext(context_page);
+  // const navigate = useNavigate()
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -88,7 +88,7 @@ const PayForm = () => {
               type="submit"
               className="bg-blue-500 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-600 transition-all duration-300"
               disabled={isSubmitting}
-              onClick={handleAddToOrders}
+              // onClick={handleAddToOrders}
             >
               Pay Now
             </button>

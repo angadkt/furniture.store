@@ -12,7 +12,9 @@ import Flag from "../components/pagination/Flag.jsx";
 const AllProducts = () => {
   const { products,addToCart } = useContext(context_page);
 
-  // const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
+  const [errors, setErrors] = useState("")
+  const [loading , setLoading] = useState(false)
   // const [searchProducts, setSearchProducts] = useState(products);
   
   const [categoriezedProduct, setCategorizedProduct] = useState([]);
@@ -24,6 +26,25 @@ const AllProducts = () => {
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemtIndex  = lastItemIndex - itemsPerPage
   const currentItems = categoriezedProduct.slice(firstItemtIndex,lastItemIndex)
+
+
+
+
+  ///////////////// seach //////////////////////
+  // const handleSearch = async ()=> {
+  //   if(!query.trim()){
+  //     setErrors("enter a valid search string")
+  //     return
+  //   }
+
+  //   setLoading(true)
+  //   setErrors("")
+
+  //   try{
+  //     const response = await axios.get(``)
+  //   }
+
+  // }
 
 
   useEffect(()=>{

@@ -50,10 +50,12 @@ const SignIn = () => {
      
       
       if (response.data.data.role === "admin") {
-        toast.success(response.data.message);
+        // toast.success(response.data.message);
         const userId = response.data.data._id;
-        navigate("/adminhome")
+        // const token = response.data.token
         localStorage.setItem("is_admin", true)
+        // localStorage.setItem("token", token)
+        navigate("/adminhome")
       } else {
         toast.success(response.data.message);
         const userId = response.data.data._id;

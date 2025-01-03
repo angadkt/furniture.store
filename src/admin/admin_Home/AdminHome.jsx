@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { MdDashboardCustomize } from "react-icons/md";
+import { MdDashboardCustomize, MdOutlineLocationSearching } from "react-icons/md";
 import { FaShopify } from "react-icons/fa";
 import { LuUsers } from "react-icons/lu";
 import { context_page } from "../../user/context/ContextProduct";
@@ -7,6 +7,7 @@ import AdminProducts from "../admin_products/AdminProducts";
 import AdminUsers from "../admin_users/AdminUsers";
 import { useNavigate } from "react-router-dom";
 import ChartComponent from "./ChartComponent";
+import axios from "axios";
 
 const AdminHome = () => {
   // const [islogin, setIsLogin] = useState(null);
@@ -14,18 +15,53 @@ const AdminHome = () => {
   const [page, setPage] = useState(()=>{
     return localStorage.getItem('page') || "dashboard"
   });
+  const [allOrders, setAllOrders] = useState([])
+  const [revenue , setRevenue] = useState() 
 
   const navigate = useNavigate();
 
 
 
+
+  // ================================== all orders ========================================
+  const getAllOrders = async () => {
+    try{
+      const response = await axios.get(`http://localhost:4000/api/totalorders`)
+      // console.log(response.data.data);
+      setAllOrders(response.data.data)
+    }
+    catch(err){
+      console.log(`error occured ${err}`);
+    }
+  }
+  useEffect(()=>{
+    getAllOrders()
+  },[])
+
+  // ================================== total revenue =========================================
+const totalRevenue = async () => {
+  try {
+    const response = await axios.get(`${process.env.API}gettotalrevenue`)
+    console.log();
+    setRevenue(response.data.data[0].totalRevenue)
+  } catch (error) {
+    console.log(`error occured ${error}`);
+  }
+}
+
+useEffect(()=>{
+  totalRevenue()
+},[])
+
+
+
   // =========================================================
   //fetching all orders
- const allOrders = users.map((item)=> item.orders).flat();
+//  const allOrders = users.map((item)=> item.orders).flat();
 
  //total earnings
-  const totalProducts = allOrders.map((item)=> item.products).flat();
-  const totalEarnings = totalProducts.reduce((acc, item)=> acc + (item.price * item.quantity),0);
+  // const totalProducts = allOrders.map((item)=> item.products).flat();
+  // const totalEarnings = totalProducts.reduce((acc, item)=> acc + (item.price * item.quantity),0);
 
 
 
@@ -131,7 +167,7 @@ const AdminHome = () => {
       {/* Card: Total Earnings */}
       <div className="w-52 h-52 flex flex-col items-center justify-center bg-white shadow-lg rounded-xl transition-transform transform hover:scale-105">
         <h2 className="text-lg font-semibold text-gray-700">Total Earnings</h2>
-        <p className="text-4xl font-bold text-blue-600">${totalEarnings}</p>
+        <p className="text-4xl font-bold text-blue-600">${revenue}</p>
       </div>
     </div>
   </div>

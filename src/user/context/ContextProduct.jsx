@@ -1,5 +1,4 @@
 import axios from "axios";
-import { data } from "framer-motion/client";
 import React, { createContext, useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
@@ -12,10 +11,10 @@ const ContextProduct = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [orders, setOrders] = useState([]);
-  const [active, setActive] = useState(true);
   const [userId, setUserId] = useState(null);
   const [deletedCartProduct, setDeletedCartProduct] = useState([]);
   const [justCart, setJustCart] = useState([]);
+  const [deletedProducts, setDeletedProducts] = useState([]);
   // const [fetchedCart , setFetchedCart] = useState([])
 
   // =================== setting user id into state for management =====================
@@ -31,29 +30,29 @@ const ContextProduct = ({ children }) => {
 
   // ==================================================== order ==============================================================
 
-  const handleAddToOrders = async () => {
-    try {
-      const response = await axios.get(`http://localhost:5999/users/${userId}`);
-      const fetchedUser = response.data;
-      const orderNew = {
-        products: fetchedUser.cart,
-      };
+  // const handleAddToOrders = async () => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:5999/users/${userId}`);
+  //     const fetchedUser = response.data;
+  //     const orderNew = {
+  //       products: fetchedUser.cart,
+  //     };
 
-      //initialize new user and modify
-      const updatedUser = {
-        ...fetchedUser,
-        orders: [...(fetchedUser.orders || []), orderNew],
-        cart: [],
-      };
-      console.log("latest user", updatedUser);
+  //     //initialize new user and modify
+  //     const updatedUser = {
+  //       ...fetchedUser,
+  //       orders: [...(fetchedUser.orders || []), orderNew],
+  //       cart: [],
+  //     };
+  //     console.log("latest user", updatedUser);
 
-      await axios.put(`http://localhost:5999/users/${userId}`, updatedUser);
+  //     await axios.put(`http://localhost:5999/users/${userId}`, updatedUser);
 
-      setOrders((prevOrders) => [...prevOrders, orderNew]);
-    } catch (err) {
-      console.log("error getting user data", err);
-    }
-  };
+  //     setOrders((prevOrders) => [...prevOrders, orderNew]);
+  //   } catch (err) {
+  //     console.log("error getting user data", err);
+  //   }
+  // };
 
   // useEffect(() => {
   //   if (userId) {
@@ -85,42 +84,80 @@ const ContextProduct = ({ children }) => {
   // }, []);
 
   // ========================================= fetching   products data ==================================================
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/api/products");
+      setProducts(response.data.data);
+      // console.log(response.data.data)
+    } catch (err) {
+      console.log("err");
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:4000/api/products");
-        setProducts(response.data.data);
-        // console.log(response.data.data)
-      } catch (err) {
-        console.log("err");
-      }
-    };
     fetchData();
   }, []);
 
-  // ====================================  handle Add to cart=======================================================
-  // useEffect(()=>{
-  //     axios.get(`http://localhost:5999/users/${iD}`)
-  //     .then((res)=>{
-  //       const newData = res.data.cart
-  //       setFetchedCart(newData)
-  //     })
-  //     .catch((err)=> console.log(err)
-  //     )
-  // },[])
+  // =============================== fetch User data from db =========================================
 
-  // useEffect(() => {
-  //   if (!iD) {
-  //     toast("please login first");
-  //   } else {
-  //     axios
-  //       .get(`http://localhost:5999/users/${iD}`)
-  //       .then((res) => {
-  //         setCart(res.data.cart)
-  //       }).catch((err)=> console.log(err)
-  //       )
-  //   }
-  // }, [iD,cart]);
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4000/api/getusers`);
+      const data = response.data.data;
+      setUsers(data);
+    } catch (err) {
+      console.log(`error occured ${err}`);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+
+  // ============================ order fetching ==============================
+
+  const fetchOrders = async () => {
+    const userId = localStorage.getItem("id")
+    try {
+      const response = await axios.get(`http://localhost:4000/api/getorders/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      console.log(response.data);
+      setOrders(response.data.data)
+      
+    } catch (error) {
+      console.log(`error occured ${error}`);
+      
+    }
+  }
+
+  useEffect(()=>{
+    fetchOrders() 
+  },[])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // ====================================  handle Add to cart=======================================================
+  
 
   //////////////////// cart section ///////////////////////////////////////
   const isBlocked = localStorage.getItem("isBlocked");
@@ -140,8 +177,8 @@ const ContextProduct = ({ children }) => {
         }
       );
       const data = response.data.data;
-      console.log("data", data)
-      setJustCart(data)
+      console.log("data", data);
+      setJustCart(data);
 
       if (response.status == 200) toast(response.data.message);
     } catch (err) {
@@ -151,28 +188,36 @@ const ContextProduct = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    const getCart = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:4000/api/getcart/${cartUser}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        // console.log("cart console is working",response.data.data.products)
-        const fetchedCart = response.data.data.products;
-        if (JSON.stringify(fetchedCart) != JSON.stringify(cart)) {
-          setCart(fetchedCart);
+  const getCart = async () => {
+    console.log("getting cart");
+    
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/getcart/${cartUser}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      } catch (err) {
-        console.log("error occured", err);
+      );
+      // console.log("cart console is working",response.data.data.products)
+      const fetchedCart = response.data.data.products;
+      if (JSON.stringify(fetchedCart) != JSON.stringify(cart)) {
+        setCart(fetchedCart);
+        console.log("quantity",fetchedCart[0].quantity);
+        console.log("cart check",fetchedCart);
+        
       }
-    };
+    } catch (err) {
+      console.log("error occured", err);
+    }
+  };
+
+  useEffect(() => {
     getCart();
   }, [deletedCartProduct, justCart]);
+
+  // ================================================================
 
   const deleteCartItem = async (productsId) => {
     console.log(cartUser);
@@ -187,6 +232,41 @@ const ContextProduct = ({ children }) => {
       console.log(response.data.data);
       deletedProduct = response.data.data;
       setDeletedCartProduct(deletedProduct);
+    } catch (err) {
+      console.log(`error occured ${err}`);
+    }
+  };
+
+  // ======================================================================
+
+  const handleIncrement = async (productId) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:4000/api/increament/${cartUser}`,
+        {
+          productsId: productId,
+        }
+      );
+      const data = response.data;
+      console.log("updated data", data);
+      toast("quantity increamented");
+      getCart()
+    } catch (err) {
+      console.log(`error occured ${err}`);
+    }
+  };
+
+  const handleDecreament = async (productsId) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:4000/api/decreament/${cartUser}`,
+        { productsId }
+      );
+      const data = response.data;
+      console.log("updated data", data.message);
+      console.log("response", response);
+      toast("quantity decreamented");
+      getCart()
     } catch (err) {
       console.log(`error occured ${err}`);
     }
@@ -222,96 +302,153 @@ const ContextProduct = ({ children }) => {
   //   }
   // };
 
-  const handleRemoveCart = (item) => {
-    const newCart = cart.filter((x) => {
-      return x.id !== item.id;
-    });
-    axios.patch(`http://localhost:5999/users/${iD}`, {
-      cart: newCart,
-    });
-    setCart(newCart);
-  };
+  // const handleRemoveCart = (item) => {
+  //   const newCart = cart.filter((x) => {
+  //     return x.id !== item.id;
+  //   });
+  //   axios.patch(`http://localhost:5999/users/${iD}`, {
+  //     cart: newCart,
+  //   });
+  //   setCart(newCart);
+  // };
 
-  // =================== quantity ==============================
+  // // =================== quantity ==============================
 
-  const increment = (cartItem, num) => {
-    if (num === -1 && cartItem.quantity === 1)
-      return toast("quantity cant be zero");
-    if (cartItem.quantity >= 1) {
-      const newCart = (prevCart) => {
-        let flag = prevCart.findIndex((item) => item.id === cartItem.id);
-        if (flag >= 0) {
-          prevCart[flag] = {
-            ...prevCart[flag],
-            quantity: prevCart[flag].quantity + num,
-          };
-          return prevCart;
-        }
-      };
+  // const increment = (cartItem, num) => {
+  //   if (num === -1 && cartItem.quantity === 1)
+  //     return toast("quantity cant be zero");
+  //   if (cartItem.quantity >= 1) {
+  //     const newCart = (prevCart) => {
+  //       let flag = prevCart.findIndex((item) => item.id === cartItem.id);
+  //       if (flag >= 0) {
+  //         prevCart[flag] = {
+  //           ...prevCart[flag],
+  //           quantity: prevCart[flag].quantity + num,
+  //         };
+  //         return prevCart;
+  //       }
+  //     };
 
-      const updateCart = newCart(cart);
-      setCart(updateCart);
+  //     const updateCart = newCart(cart);
+  //     setCart(updateCart);
 
-      axios
-        .patch(`http://localhost:5999/users/${iD}`, {
-          cart: updateCart,
-        })
-        .then((res) => console.log("done", res.data))
-        .catch((err) => console.log(err));
-    } else {
-      toast("quantity cant be zero");
-    }
-  };
+  //     axios
+  //       .patch(`http://localhost:5999/users/${iD}`, {
+  //         cart: updateCart,
+  //       })
+  //       .then((res) => console.log("done", res.data))
+  //       .catch((err) => console.log(err));
+  //   } else {
+  //     toast("quantity cant be zero");
+  //   }
+  // };
 
   // ============================= Admin functions ================================
 
   //delete products
-  const handleDeleteProduct = (item) => {
-    axios
-      .delete(`http://localhost:5999/products/${item.id}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
 
-    const updatedProductList = products.filter((x) => x.id !== item.id);
-    setProducts(updatedProductList);
-    toast("product deleted");
+  const deleteProduct = async (productsId) => {
+    if (!productsId) {
+      console.error(`productsId missing`);
+    }
+    console.log(productsId);
+    try {
+      const response = await axios.delete(
+        `http://localhost:4000/api/deleteproduct`,
+        {
+          data: { productsId },
+        }
+      );
+      console.log(response.data.data);
+      const deletedData = response.data.data;
+      setDeletedProducts(deletedData);
+
+      toast("product deleted");
+      fetchData();
+    } catch (err) {
+      console.log(`error occured ${err}`);
+    }
   };
+
+  // const editProduct  = async (productsId) => {
+  //   try{
+  //     const response = await axios.put(`http://localhost:4000/api/editproduct/${productsId}`,{
+  //       data:{name, category, details, images, price, quantity}
+  //     })
+  //   }
+  //   catch(err){
+  //     console.log(`error occured ${err}`)
+  //   }
+  // }
+
+  // const handleDeleteProduct = (item) => {
+  //   axios
+  //     .delete(`http://localhost:5999/products/${item.id}`)
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err));
+
+  //   const updatedProductList = products.filter((x) => x.id !== item.id);
+  //   setProducts(updatedProductList);
+  //   toast("product deleted");
+  // };
   // ..................................
 
   // ...........................................
 
   //delete user
 
-  const handleDeleteUser = (currentuser) => {
-    axios
-      .delete(`http://localhost:5999/users/${currentuser.id}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+  // const handleDeleteUser = (currentuser) => {
+  //   axios
+  //     .delete(`http://localhost:5999/users/${currentuser.id}`)
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err));
 
-    const updateUserList = users.filter((user) => user.id !== currentuser.id);
-    setUsers(updateUserList);
-    toast("user deleted");
-  };
+  //   const updateUserList = users.filter((user) => user.id !== currentuser.id);
+  //   setUsers(updateUserList);
+  //   toast("user deleted");
+  // };
+
+  const handleRemoveUser = async (userid) => {
+    try{
+      const response =  await axios.delete(`http://localhost:4000/api/deleteuser/${userid}`)
+      toast("user deleted ")
+    }
+    catch(err){
+      console.log(`error occured ${err}`);
+      
+    }
+  }
 
   // .............................................................
   //block user
 
-  const handleUserStatus = (currentuser) => {
-    const upDateActive = !active;
-    setActive(upDateActive);
+  // const handleUserStatus = (currentuser) => {
+  //   const upDateActive = !active;
+  //   setActive(upDateActive);
 
-    axios
-      .patch(`http://localhost:5999/users/${currentuser.id}`, {
-        isActive: upDateActive,
-      })
-      .then((res) => {
-        console.log("user active status updates", res);
-        console.log(active);
+  //   axios
+  //     .patch(`http://localhost:5999/users/${currentuser.id}`, {
+  //       isActive: upDateActive,
+  //     })
+  //     .then((res) => {
+  //       console.log("user active status updates", res);
+  //       console.log(active);
 
-        localStorage.setItem("active", upDateActive);
-      })
-      .catch((err) => console.log("error in updating active status", err));
-  };
+  //       localStorage.setItem("active", upDateActive);
+  //     })
+  //     .catch((err) => console.log("error in updating active status", err));
+  // };
+
+  const blockAndUnblockUser = async (userId) => {
+    try{
+      const response = await axios.put(`http://localhost:4000/api/blockandunblock/${userId}`)
+      console.log(response.data.data)
+      toast("user status updated")
+    }
+    catch(err){
+      console.log(`error occured ${err}`);
+    }
+  }
 
   //admin logOut
 
@@ -326,19 +463,22 @@ const ContextProduct = ({ children }) => {
         // handleAddToCart,
         cart,
         setCart,
-        handleRemoveCart,
-        increment,
-        quantity,
         setQuantity,
-        handleAddToOrders,
+        // handleAddToOrders,
         orders,
-        handleDeleteProduct,
-        handleDeleteUser,
-        handleUserStatus,
-        active,
         addToCart,
         deleteCartItem,
         setDeletedCartProduct,
+        handleIncrement,
+        handleDecreament,
+        deleteProduct,
+        fetchData, //fetching product data function
+        getCart, //function to get cart data
+        fetchUsers,//fetch user data
+        blockAndUnblockUser,
+        handleRemoveUser,
+        fetchOrders ,
+        
       }}
     >
       {children}
