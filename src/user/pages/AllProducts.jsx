@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { context_page } from "../context/ContextProduct";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Toaster} from 'react-hot-toast';
+import toast, { Toaster} from 'react-hot-toast';
 import Footer from "../components/Footer";
 import axios from "axios";
 import Flag from "../components/pagination/Flag.jsx";
@@ -15,7 +15,9 @@ const AllProducts = () => {
   const [query, setQuery] = useState("");
   const [errors, setErrors] = useState("")
   const [loading , setLoading] = useState(false)
-  // const [searchProducts, setSearchProducts] = useState(products);
+  const [searchProducts, setSearchProducts] = useState([]);
+  const [search , setSearch] = useState("")
+     
   
   const [categoriezedProduct, setCategorizedProduct] = useState([]);
 
@@ -45,6 +47,31 @@ const AllProducts = () => {
   //   }
 
   // }
+
+  const handleSearch = async () => {
+    console.log(search)
+    if(search.trim() === "") {
+      toast("enter the search value")
+    }
+    try{
+
+      const response = await axios.get(`http://localhost:4000/api/search`, {
+        params: { query: search}
+      })
+      console.log(response.data)
+
+      if(response.data.data.length == 0){
+        toast( `products with ${search} does not exist`)
+      }
+      setCategorizedProduct(response.data.data)
+      
+    }
+    catch(err){
+      console.log("error occured" , err);
+      
+    }
+   
+  }
 
 
   useEffect(()=>{
@@ -124,7 +151,7 @@ if (!products || products.length === 0) {
     <div className="mt-20 bg-transparent">
       <div className="w-full h-full   md:px-16 px-8 mt-5 mb-16">
         <div className="w-full flex justify-center">
-          <div class="max-w-md mx-auto">
+          <div class="max-w-md mx-auto flex gap-3 justify-center items-center">
             <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden mt-5 ">
               <div class="grid place-items-center h-full w-12 text-gray-300">
                 <svg
@@ -145,12 +172,15 @@ if (!products || products.length === 0) {
 
               <input
                 class="peer h-full w-full outline-none text-sm text-gray-700 pr-2 bg-customCardColor"
-                // onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 type="search"
-                // value={search}
+                value={search}
                 id="search"
                 placeholder="Search something .."
               />
+            </div>
+            <div className="mt-5">
+            <button onClick={handleSearch} className="bg-slate-300 rounded-lg px-3 py-1 hover:bg-slate-500 hover:text-white cursor-pointer">search</button>
             </div>
           </div>
         </div>
@@ -235,6 +265,7 @@ if (!products || products.length === 0) {
                         Add to Cart
                       </button>
                       <button
+                      //view details
                         onClick={() => navigate(`/products/${item.id}`)}
                         className=" p-1 rounded-md px-2 mt-2 bg-blue-500 text-white hover:bg-blue-600 mr-4"
                       >

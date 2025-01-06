@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { context_page } from "../context/ContextProduct";
+import {toast} from "react-toastify";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -75,14 +76,14 @@ const RegistrationForm = () => {
         );
 
         if (response.status == 201) {
-          alert(response.data.message);
+          toast(response.data.message);
           navigate("/signin");
         }
       } catch (err) {
         if (err.response.status == 400) {
-          alert(`${err.response.data.message}`);
+          toast.warn(`${err.response.data.message}`);
           console.log(`error occured posting userdata ${err.response.data}`);
-          navigate("/signin");
+          // navigate("/signin");
         } else {
           console.log(`error occured, ${err}`);
         }

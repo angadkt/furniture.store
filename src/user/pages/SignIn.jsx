@@ -50,11 +50,8 @@ const SignIn = () => {
      
       
       if (response.data.data.role === "admin") {
-        // toast.success(response.data.message);
         const userId = response.data.data._id;
-        // const token = response.data.token
         localStorage.setItem("is_admin", true)
-        // localStorage.setItem("token", token)
         navigate("/adminhome")
       } else {
         toast.success(response.data.message);
@@ -71,6 +68,8 @@ const SignIn = () => {
       
       if (err.response.status == 404) {
         console.log(err.response.data.message);
+        toast.warn(err.response.data.message);
+      }else if(err.response.status == 400){
         toast.warn(err.response.data.message);
       }
     }

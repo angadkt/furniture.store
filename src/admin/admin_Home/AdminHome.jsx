@@ -6,7 +6,6 @@ import { context_page } from "../../user/context/ContextProduct";
 import AdminProducts from "../admin_products/AdminProducts";
 import AdminUsers from "../admin_users/AdminUsers";
 import { useNavigate } from "react-router-dom";
-import ChartComponent from "./ChartComponent";
 import axios from "axios";
 
 const AdminHome = () => {
@@ -41,7 +40,7 @@ const AdminHome = () => {
   // ================================== total revenue =========================================
 const totalRevenue = async () => {
   try {
-    const response = await axios.get(`${process.env.API}gettotalrevenue`)
+    const response = await axios.get(`http://localhost:4000/api/gettotalrevenue`)
     console.log();
     setRevenue(response.data.data[0].totalRevenue)
   } catch (error) {
