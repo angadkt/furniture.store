@@ -1,14 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { MdMenu } from "react-icons/md";
 import MobileNav from "./MobileNav";
 import { FaOpencart } from "react-icons/fa";
 import { context_page } from "../context/ContextProduct";
 import { FaRegUserCircle } from "react-icons/fa";
+import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_KEY
 
 const Navbar = () => {
+  const [thisUser, setThisUser] = useState()
   const [mobView, setMobView] = useState(false);
-  const { users } = useContext(context_page);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -17,7 +19,8 @@ const Navbar = () => {
     console.log("No ID found in localStorage.");
   }
 
- 
+  const  currentUserName = localStorage.getItem("name")
+  
 
   const Links = [
     { name: "Home", link: "/" },
@@ -44,6 +47,7 @@ const Navbar = () => {
   const emailOfUser = localStorage.getItem("email");
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+    // specificUser()
   };
   const handleModalnavigate = () => {
     setIsModalOpen(false);
@@ -125,8 +129,8 @@ const Navbar = () => {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-start justify-end bg-transparent bg-opacity-50 mt-20 mr-20">
           <div className="bg-white rounded-lg p-8 shadow-lg w-1/3">
-            <h2 className="text-xl font-semibold mb-4">{nameOfUser}</h2>
-            <p className="mb-6">{emailOfUser}</p>
+            <h2 className="text-xl font-semibold mb-4">{currentUserName}</h2>
+            {/* <p className="mb-6">{emailOfUser}</p> */}
 
             {/* Buttons in the modal */}
             <div className="flex justify-end space-x-4">

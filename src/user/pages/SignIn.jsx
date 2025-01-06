@@ -5,10 +5,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { context_page } from "../context/ContextProduct";
 // import { toast, Toaster } from "react-hot-toast";
 
 // import toast , {Toaster} from "react-hot-toast";
-// import { context_page } from "../context/ContextProduct";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const SignIn = () => {
     email: "",
     password: "",
   });
-  // const {users} = useContext(context_page);
+  const {getCart} = useContext(context_page);
 
   const [errors, setErrors] = useState({});
   const [valid, setValild] = useState(true);
@@ -51,18 +51,22 @@ const SignIn = () => {
       
       if (response.data.data.role === "admin") {
         const userId = response.data.data._id;
+        const token = response.data.token
         localStorage.setItem("is_admin", true)
+        localStorage.setItem("token", token)
         navigate("/adminhome")
       } else {
         toast.success(response.data.message);
         const userId = response.data.data._id;
         const isBlocked = response.data.data.isBlocked
         const token = response.data.token
-        console.log("token", token);
+        const userName = response.data.data.name
         localStorage.setItem("id", userId);
         localStorage.setItem("isBlocked", isBlocked);
         localStorage.setItem("token", token)
+        localStorage.setItem("name", userName)
         navigate("/");
+        getCart()
       }
     } catch (err) {
       

@@ -199,6 +199,10 @@ const AdminProducts = () => {
       placeholder="Category"
       {...formik.getFieldProps("category")}
     />
+    {/* <select 
+    >
+
+    </select> */}
     {formik.touched.category && formik.errors.category ? (
       <div className="text-red-500 text-sm">{formik.errors.category}</div>
     ) : null}

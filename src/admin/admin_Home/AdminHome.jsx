@@ -7,6 +7,11 @@ import AdminProducts from "../admin_products/AdminProducts";
 import AdminUsers from "../admin_users/AdminUsers";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+
+
+
+const apiUrl = import.meta.env.VITE_API_KEY
 
 const AdminHome = () => {
   // const [islogin, setIsLogin] = useState(null);
@@ -19,13 +24,16 @@ const AdminHome = () => {
 
   const navigate = useNavigate();
 
+  
 
 
 
   // ================================== all orders ========================================
+
   const getAllOrders = async () => {
+
     try{
-      const response = await axios.get(`http://localhost:4000/api/totalorders`)
+      const response = await axios.get(`${apiUrl}/totalorders`)
       // console.log(response.data.data);
       setAllOrders(response.data.data)
     }
@@ -40,7 +48,7 @@ const AdminHome = () => {
   // ================================== total revenue =========================================
 const totalRevenue = async () => {
   try {
-    const response = await axios.get(`http://localhost:4000/api/gettotalrevenue`)
+    const response = await axios.get(`${apiUrl}/gettotalrevenue`)
     console.log();
     setRevenue(response.data.data[0].totalRevenue)
   } catch (error) {
@@ -78,12 +86,41 @@ useEffect(()=>{
 
 
 
-  const handleAdminLogout = ()=>{
-    localStorage.removeItem("is_admin")
-    navigate("/signin")
-    
-    
-  }
+  const handleAdminLogout = () => {
+    const swalWithTailwindButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "bg-blue-500 text-white px-4 py-2 rounded  hover:bg-blue-600 focus:outline-none",
+        cancelButton: "bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none",
+        actions: "space-x-4"
+      },
+      buttonsStyling: false, // Disable SweetAlert2 default styling
+    });
+  
+    swalWithTailwindButtons.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, sign out!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("is_admin");
+        navigate("/signin");
+        swalWithTailwindButtons.fire({
+          title: "Signing Out!",
+          text: "Admin has been signed out.",
+          icon: "success",
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithTailwindButtons.fire({
+          title: "Cancelled",
+          icon: "error",
+        });
+      }
+    });
+  };
+  
 
   const isAdmin = localStorage.getItem("is_admin")
  

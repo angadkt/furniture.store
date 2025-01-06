@@ -69,6 +69,8 @@ const AllProducts = () => {
     catch(err){
       console.log("error occured" , err);
       
+    }finally{
+      setSearch("")
     }
    
   }

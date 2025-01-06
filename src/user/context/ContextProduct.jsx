@@ -3,7 +3,15 @@ import React, { createContext, useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
+
+
+const apiUrl = import.meta.env.VITE_API_KEY
+
+
 export const context_page = createContext();
+
+
+
 
 const ContextProduct = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -19,14 +27,14 @@ const ContextProduct = ({ children }) => {
 
   // =================== setting user id into state for management =====================
 
-  useEffect(() => {
-    const storedID = localStorage.getItem("id");
-    if (storedID) {
-      setUserId(storedID);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedID = localStorage.getItem("id");
+  //   if (storedID) {
+  //     setUserId(storedID);
+  //   }
+  // }, []);
 
-  const iD = localStorage.getItem("id"); //globaly setting id in of the loggedin user to a variable for further use
+  // const iD = localStorage.getItem("id"); //globaly setting id in of the loggedin user to a variable for further use
 
   // ==================================================== order ==============================================================
 
@@ -86,7 +94,7 @@ const ContextProduct = ({ children }) => {
   // ========================================= fetching   products data ==================================================
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/products");
+      const response = await axios.get(`${apiUrl}/products`);
       setProducts(response.data.data);
       // console.log(response.data.data)
     } catch (err) {
@@ -102,7 +110,7 @@ const ContextProduct = ({ children }) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/getusers`);
+      const response = await axios.get(`${apiUrl}/getusers`);
       const data = response.data.data;
       setUsers(data);
     } catch (err) {
@@ -120,7 +128,7 @@ const ContextProduct = ({ children }) => {
   const fetchOrders = async () => {
     const userId = localStorage.getItem("id")
     try {
-      const response = await axios.get(`http://localhost:4000/api/getorders/${userId}`,
+      const response = await axios.get(`${apiUrl}/getorders/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -165,15 +173,20 @@ const ContextProduct = ({ children }) => {
   
 
   //////////////////// cart section ///////////////////////////////////////
+  // useEffect(() => {
+  //   console.log("LocalStorage ID:", localStorage.getItem("id"));
+  // }, []);
   const isBlocked = localStorage.getItem("isBlocked");
-  const cartUser = localStorage.getItem("id");
+  
   const token = localStorage.getItem("token");
   let deletedProduct = {};
 
   const addToCart = async (productId, quantity) => {
+    const cartUser = localStorage.getItem("id");
     try {
+      console.log("cartUser",cartUser)
       const response = await axios.post(
-        `http://localhost:4000/api/addtocart/${cartUser}`,
+        `${apiUrl}/addtocart/${cartUser}`,
         { productsId: productId, quantity },
         {
           headers: {
@@ -186,19 +199,21 @@ const ContextProduct = ({ children }) => {
       setJustCart(data);
 
       if (response.status == 200) toast(response.data.message);
+
+      getCart()
     } catch (err) {
       if (err.response.data.success == false) {
         toast(err.response.data.message);
       }
     }
   };
-
+// =================================== getCart ==============================================
   const getCart = async () => {
-    console.log("getting cart");
+    const cartUser = localStorage.getItem("id");
     
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/getcart/${cartUser}`,
+        `${apiUrl}/getcart/${cartUser}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -209,8 +224,6 @@ const ContextProduct = ({ children }) => {
       const fetchedCart = response.data.data.products;
       if (JSON.stringify(fetchedCart) != JSON.stringify(cart)) {
         setCart(fetchedCart);
-        console.log("quantity",fetchedCart[0].quantity);
-        console.log("cart check",fetchedCart);
         
       }
     } catch (err) {
@@ -225,17 +238,16 @@ const ContextProduct = ({ children }) => {
   // ================================================================
 
   const deleteCartItem = async (productsId) => {
-    console.log(cartUser);
-    console.log("product id", productsId);
+    const cartUser = localStorage.getItem("id");
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/deleteitem/${cartUser}`,
+        `${apiUrl}/deleteitem/${cartUser}`,
         {
           data: { productsId },
         }
       );
-      console.log(response.data.data);
-      deletedProduct = response.data.data;
+      toast("Product removed from the cart")
+      const deletedProduct = response.data.data;
       setDeletedCartProduct(deletedProduct);
     } catch (err) {
       console.log(`error occured ${err}`);
@@ -245,15 +257,15 @@ const ContextProduct = ({ children }) => {
   // ======================================================================
 
   const handleIncrement = async (productId) => {
+    const cartUser = localStorage.getItem("id");
     try {
       const response = await axios.patch(
-        `http://localhost:4000/api/increament/${cartUser}`,
+        `${apiUrl}/increament/${cartUser}`,
         {
           productsId: productId,
         }
       );
       const data = response.data;
-      console.log("updated data", data);
       toast("quantity increamented");
       getCart()
     } catch (err) {
@@ -262,14 +274,13 @@ const ContextProduct = ({ children }) => {
   };
 
   const handleDecreament = async (productsId) => {
+    const cartUser = localStorage.getItem("id");
     try {
       const response = await axios.patch(
-        `http://localhost:4000/api/decreament/${cartUser}`,
+        `${apiUrl}/decreament/${cartUser}`,
         { productsId }
       );
       const data = response.data;
-      console.log("updated data", data.message);
-      console.log("response", response);
       toast("quantity decreamented");
       getCart()
     } catch (err) {
@@ -359,12 +370,11 @@ const ContextProduct = ({ children }) => {
     console.log(productsId);
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/deleteproduct`,
+        `${apiUrl}/deleteproduct`,
         {
           data: { productsId },
         }
       );
-      console.log(response.data.data);
       const deletedData = response.data.data;
       setDeletedProducts(deletedData);
 
@@ -415,8 +425,9 @@ const ContextProduct = ({ children }) => {
 
   const handleRemoveUser = async (userid) => {
     try{
-      const response =  await axios.delete(`http://localhost:4000/api/deleteuser/${userid}`)
+      const response =  await axios.delete(`${apiUrl}/deleteuser/${userid}`)
       toast("user deleted ")
+      fetchUsers()
     }
     catch(err){
       console.log(`error occured ${err}`);
@@ -446,7 +457,7 @@ const ContextProduct = ({ children }) => {
 
   const blockAndUnblockUser = async (userId) => {
     try{
-      const response = await axios.put(`http://localhost:4000/api/blockandunblock/${userId}`)
+      const response = await axios.put(`${apiUrl}/blockandunblock/${userId}`)
       console.log(response.data.data)
       toast("user status updated")
     }
