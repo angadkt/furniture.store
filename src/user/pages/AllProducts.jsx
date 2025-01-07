@@ -7,15 +7,17 @@ import toast, { Toaster} from 'react-hot-toast';
 import Footer from "../components/Footer";
 import axios from "axios";
 import Flag from "../components/pagination/Flag.jsx";
+import Loader from "../components/loading/ImageLoading.jsx";
+import TotalLoader from "../components/loading/TotalLoader.jsx";
 
 
 const AllProducts = () => {
   const { products,addToCart } = useContext(context_page);
 
-  const [query, setQuery] = useState("");
-  const [errors, setErrors] = useState("")
-  const [loading , setLoading] = useState(false)
-  const [searchProducts, setSearchProducts] = useState([]);
+  // const [query, setQuery] = useState("");
+  // const [errors, setErrors] = useState("")
+  const [loading , setLoading] = useState(true)
+  // const [searchProducts, setSearchProducts] = useState([]);
   const [search , setSearch] = useState("")
      
   
@@ -138,13 +140,17 @@ const handleCategory = async (category) => {
 
 // Rendering section
 if (!products || products.length === 0) {
-  return <div>Loading products...</div>;
+  return <div className="w-full h-screen flex justify-center items-center"><TotalLoader /></div>;
 }
 
 // ================================================
     // console.log("current items",currentItems)
 
 
+    // ================= loading function =======================
+const handleLoading = () =>{
+  setLoading(false)
+}
 
 
 
@@ -214,10 +220,14 @@ if (!products || products.length === 0) {
                   key={index}
                 >
                   <div className=" overflow-hidden object-contain relative rounded-xl">
+                  {loading && (
+                    <Loader />
+                  )}
                   <img
-                    className="w-72 h-72 object-cover rounded-xl  hover:scale-x-105 hover:scale-105 hover:duration-300"
+                    className ={` w-72 h-72 object-cover rounded-xl  hover:scale-x-105 hover:scale-105 hover:duration-300 ${loading ? "hidden":"block"}`}
                     src={item.images[0]}
                     alt={item.name}
+                    onLoad={handleLoading}
                   />
                   </div>
                   <div className="mt-4 ml-4 mb-2">
