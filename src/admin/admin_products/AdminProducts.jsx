@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 
+const apiUrl = import.meta.env.VITE_API_KEY
+
 const AdminProducts = () => {
   const { products, fetchData, deleteProduct, setProducts } =
     useContext(context_page);
@@ -118,7 +120,7 @@ const AdminProducts = () => {
       console.log(newProduct);
       try {
         const response = await axios.post(
-          `http://localhost:4000/api/addproducts`,
+          `${apiUrl}/addproducts`,
           newProduct
         );
         console.log(response.data.data);

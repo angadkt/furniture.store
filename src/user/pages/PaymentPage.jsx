@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { context_page } from "../context/ContextProduct";
+const apiUrl = import.meta.env.VITE_API_KEY;
 
 const PaymentPage = () => {
   const navigate = useNavigate();
@@ -115,12 +116,9 @@ const PaymentPage = () => {
     const { fullName, mobile, streetAddress } = values;
     try {
       // console.log(userId);
-      const response = await axios.post(
-        `http://localhost:4000/api/payment/${userId}`,
-        {
-          currency: "INR",
-        }
-      );
+      const response = await axios.post(`${apiUrl}/payment/${userId}`, {
+        currency: "INR",
+      });
       if (response.data.success) {
         const options = {
           key: "rzp_test_KVYa3j27SRKqtq",
@@ -132,7 +130,7 @@ const PaymentPage = () => {
           order_id: response.data.data.id,
           handler: async function (response) {
             const verificationResponse = await axios.post(
-              `http://localhost:4000/api/paymentverification/${userId}`,
+              `${apiUrl}/paymentverification/${userId}`,
               {
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_order_id: response.razorpay_order_id,
@@ -140,13 +138,12 @@ const PaymentPage = () => {
                 Address: streetAddress,
               }
             );
-            console.log("verification response",verificationResponse);
+            console.log("verification response", verificationResponse);
 
             if (verificationResponse.data.success) {
               toast.success(`You Paid ₹${totalAmount} Successfully`);
               navigate("/allproducts");
-              window.location.reload()
-
+              window.location.reload();
             } else {
               toast.error("Payment verification failed");
             }

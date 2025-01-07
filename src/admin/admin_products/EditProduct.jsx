@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { context_page } from "../../user/context/ContextProduct";
 import axios from "axios";
 import toast from "react-hot-toast";
+const apiUrl = import.meta.env.VITE_API_KEY
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -35,7 +36,7 @@ const EditProduct = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/editproduct/${id}`,
+        `${apiUrl}/editproduct/${id}`,
         fltPro
       );
       toast.success("Product updated successfully");

@@ -12,22 +12,7 @@ const ProductDetails = () => {
   const [ filteredProduct, setFilteredProduct] = useState([])
   const [productsById , setProductsById] = useState([])
  
-  // const fetchUserById = async () => {
-  //   try{
-  //     const response = await axios.get(`http://localhost:4000/api/productsbyid/${id}`)
-  //     console.log(response.data.data)
-  //     setProductsById(response.data.data)
-  //     // console.log(productsById)
-  //   }
-  //   catch(err){
-  //     console.log("error found" , err);
-  //   }
-  // }
 
-  // useEffect(()=>{
-  //   fetchUserById()
-  // },[])
-  console.log("products",products)
 
   
   useEffect(()=>{
@@ -37,7 +22,6 @@ const ProductDetails = () => {
     setFilteredProduct(productDetail)
   },[id , products])
 
-  console.log("details",filteredProduct);
   
   
   return (

@@ -24,8 +24,7 @@ const CartView = () => {
   const user = users?.find((item) => item._id === userId) || {};
   console.log("users", user);
 
-  // console.log("cart",cart)
-  // console.log("inside cart",cart.map((x)=> x.productsId))
+ 
 
   const cartProducts = cart.map((x) => x.productsId);
   console.log("checking!!", cartProducts);
@@ -44,86 +43,6 @@ const CartView = () => {
     );
   }
 
-
-  // const handleCheckOut = async () => {
-    
-
-  //   try {
-  //     console.log("hi");
-  //     console.log(userId);
-
-  //     const response = await axios.post(
-  //       `http://localhost:4000/api/payment/${userId}`,
-  //       {
-  //         currency: "INR",
-  //       }
-  //     );
-  //     console.log(response);
-
-  //     console.log("1234");
-
-  //     if (response.data.success) {
-  //       const options = {
-  //         key: "rzp_test_xmEQwtMRj8gAQN",
-  //         amount: totalAmount * 100,
-  //         currency: "INR",
-  //         name: "urban-oak",
-  //         description: "Test Transaction",
-  //         image: "",
-  //         order_id: response.data.data.id,
-  //         handler: async function (response) {
-  //           const verificationResponse = await axios.post(
-  //             `http://localhost:4000/api/paymentverification/${userId}`,
-  //             {
-  //               razorpay_payment_id: response.razorpay_payment_id,
-  //               razorpay_order_id: response.razorpay_order_id,
-  //               razorpay_signature: response.razorpay_signature,
-  //             }
-  //           );
-  //           if (verificationResponse?.data?.success) {
-  //             dispatch(clearCart());
-  //             toast.success(`You Paid ₹${totalAmount} Successfully`);
-  //             // navigate("/products");
-  //           } else {
-  //             toast.error("Payment verification failed");
-  //           }
-  //         },
-  //         prefill: {
-  //           name: user.name,
-  //           email: user.email,
-  //         },
-  //         notes: {
-  //           address: user.address,
-  //           pincode: user.pincode,
-  //         },
-  //         theme: {
-  //           color: "#3399cc",
-  //         },
-  //       };
-
-  //       const rzp1 = new window.Razorpay(options);
-  //       rzp1.on("payment.failed", function (response) {
-  //         alert(`Payment failed: ${response.error.description}`);
-  //       });
-  //       rzp1.open();
-  //     } else {
-  //       toast.error("Failed to create payment order");
-  //     }
-  //   } catch (error) {
-  //     if (error) {
-  //       toast.error("Cart is empty ");
-  //       console.log(error);
-  //     } else {
-  //       console.error("Payment Creation Failed:", error);
-  //       toast.error("Payment Creation Failed. Please try again.");
-  //     }
-  //     window.location.reload();
-  //   }
-  // };
-
-  // const handleCLick = () => {
-  //   getCart()
-  // }
 
   return (
     <div className="mt-20 flex flex-col flex-wrap gap-5 ">

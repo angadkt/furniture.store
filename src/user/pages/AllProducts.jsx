@@ -9,6 +9,7 @@ import axios from "axios";
 import Flag from "../components/pagination/Flag.jsx";
 import Loader from "../components/loading/ImageLoading.jsx";
 import TotalLoader from "../components/loading/TotalLoader.jsx";
+const apiUrl = import.meta.env.VITE_API_KEY
 
 
 const AllProducts = () => {
@@ -34,21 +35,7 @@ const AllProducts = () => {
 
 
 
-  ///////////////// seach //////////////////////
-  // const handleSearch = async ()=> {
-  //   if(!query.trim()){
-  //     setErrors("enter a valid search string")
-  //     return
-  //   }
 
-  //   setLoading(true)
-  //   setErrors("")
-
-  //   try{
-  //     const response = await axios.get(``)
-  //   }
-
-  // }
 
   const handleSearch = async () => {
     console.log(search)
@@ -57,7 +44,7 @@ const AllProducts = () => {
     }
     try{
 
-      const response = await axios.get(`http://localhost:4000/api/search`, {
+      const response = await axios.get(`${apiUrl}/search`, {
         params: { query: search}
       })
       console.log(response.data)
@@ -100,7 +87,7 @@ const handleCategory = async (category) => {
   }
   else{
     try{
-      const response = await axios.get('http://localhost:4000/api/getproductscategory', {params:{category}})
+      const response = await axios.get(`${apiUrl}/getproductscategory`, {params:{category}})
       const filteredData = response.data.data
       setCategorizedProduct(filteredData)
     }catch(err){
@@ -114,29 +101,9 @@ const handleCategory = async (category) => {
 
 
 
-  // ======================== search ==========================================
-  
-//   useEffect(() => {
-//     if (search) {
-//       const filteredProducts = categoriezedProduct.filter((item) =>
-//         item.name.toLowerCase().includes(search.toLowerCase())
-//     );
-//     setSearchProducts(filteredProducts);
-//   } else {
-//     setSearchProducts(categoriezedProduct);
-//   }
-// }, [search, categoriezedProduct]);
-
-
-// useEffect(()=>{
-//   setCategorizedProduct(products);
-//   setSearchProducts(products);
-// }, [products])
 // ====================================================================
 
-// useEffect(() => {
-//   console.log("Updated category products: ", categoriezedProduct);
-// }, [categoriezedProduct]);
+
 
 // Rendering section
 if (!products || products.length === 0) {

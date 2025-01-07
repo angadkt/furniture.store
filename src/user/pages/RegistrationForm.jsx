@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { context_page } from "../context/ContextProduct";
 import {toast} from "react-toastify";
+const apiUrl = import.meta.env.VITE_API_KEY
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const RegistrationForm = () => {
       //   .catch(err => console.log(err))
       try {
         const response = await axios.post(
-          "http://localhost:4000/api/register",
+          `${apiUrl}/register`,
           {
             name: userDeatils.username,
             email: userDeatils.email,

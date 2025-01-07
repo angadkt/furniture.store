@@ -7,19 +7,19 @@ import ImageCarousel from "./Carousel/ImageCarousel";
 const CategorySection = () => {
   const navigate = useNavigate();
 
-  const [Categories, setCategories] = useState([]);
+  // const [Categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:5999/categories");
-        setCategories(response.data);
-      } catch (err) {
-        console.log("error getting category");
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get("http://localhost:5999/categories");
+  //       setCategories(response.data);
+  //     } catch (err) {
+  //       console.log("error getting category");
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
   return (
     // <div className="flex justify-center mt-20 flex-col items-center mx-16 gap-10 ">
     //   <div className="font-bold text-4xl">categories</div>

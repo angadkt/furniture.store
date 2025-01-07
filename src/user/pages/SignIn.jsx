@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { context_page } from "../context/ContextProduct";
+const apiUrl = import.meta.env.VITE_API_KEY
 // import { toast, Toaster } from "react-hot-toast";
 
 // import toast , {Toaster} from "react-hot-toast";
@@ -42,7 +43,7 @@ const SignIn = () => {
       validationErrors.password = "Password must be at least 6 characters long";
     }
     try {
-      const response = await axios.post("http://localhost:4000/api/login", {
+      const response = await axios.post(`${apiUrl}/login`, {
         email: userDetails.email,
         password: userDetails.password,
       });
