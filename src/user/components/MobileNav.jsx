@@ -8,9 +8,7 @@ const MobileNav = ({ mobView, setMobView }) => {
   const { users } = useContext(context_page);
 
   const id = localStorage.getItem("id");
-  // if (!id) {
-  //   return null;
-  // }
+  
   const currentUserCheck = users.find((user) => user.id === id);
 
   const handleTheSignOut = () => {

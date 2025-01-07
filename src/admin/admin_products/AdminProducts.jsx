@@ -46,50 +46,7 @@ const AdminProducts = () => {
     });
   }
 
-  // const handleDeleteProduct = (productId) => {
-  //   deleteProduct(productId)
-  // }
-  // ==================  =====================================
-
-  //   const [newProducts , setNewProducts] = useState({
-  //     id: "",
-  //     name: "",
-  //     category: "",
-  //     details: "",
-  //     price: 0,
-  //     quantity : 1
-  //   })
-
-  //   let isSubmitting = false;
-
-  // const handleAddProducts = (event) => {
-  //   event.preventDefault();
-
-  //   if (isSubmitting) return; // Prevent duplicate submissions
-  //   isSubmitting = true;      // Set flag to prevent multiple submissions
-
-  //   let newId = products.length + 1;
-
-  //   setNewProducts((prevState) => {
-  //     const updateProduct = { ...prevState, id: newId };
-
-  //     axios.post(`http://localhost:5999/products`, updateProduct)
-  //       .then((res) => {
-  //         console.log(`res: ${res.data}`);
-  //         console.log('up',updateProduct);
-
-  //         alert('Product added to the database');
-  //         isSubmitting = false;  // Reset flag after submission is successful
-  //       })
-  //       .catch((err) => {
-  //         console.log('Error:', err);
-  //         isSubmitting = false;  // Reset flag even if there's an error
-  //       });
-
-  //     return updateProduct;
-  //   });
-  // };
-
+ 
   // ======================= form validation ================================
 
   const formik = useFormik({

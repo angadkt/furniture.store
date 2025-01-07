@@ -12,14 +12,12 @@ const UserInfo = () => {
     
     const { users ,blockAndUnblockUser, fetchUsers ,setUsers , handleRemoveUser} = useContext(context_page);
     const [cartProducts , setCartProducts] = useState([])
-    // const [isBlocked,setIsBlocked] = useState(false)
 
     const currentUser = users.find((user) => String(user._id) === String(id));
 
     if (!currentUser) {
         return <div className="text-center text-red-600">User not found</div>;
     }
-    console.log(currentUser)
 
     
     
@@ -47,7 +45,6 @@ const UserInfo = () => {
 
     const handleModalOpen = () =>{
       setModalOpen(true)
-      console.log("modal open" ,modalOpen);
       
     }
 

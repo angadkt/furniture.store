@@ -14,7 +14,6 @@ import Swal from "sweetalert2";
 const apiUrl = import.meta.env.VITE_API_KEY
 
 const AdminHome = () => {
-  // const [islogin, setIsLogin] = useState(null);
   const { products, users    } = useContext(context_page);
   const [page, setPage] = useState(()=>{
     return localStorage.getItem('page') || "dashboard"
@@ -63,18 +62,7 @@ useEffect(()=>{
 
 
   // =========================================================
-  //fetching all orders
-//  const allOrders = users.map((item)=> item.orders).flat();
 
- //total earnings
-  // const totalProducts = allOrders.map((item)=> item.products).flat();
-  // const totalEarnings = totalProducts.reduce((acc, item)=> acc + (item.price * item.quantity),0);
-
-
-
-  // useEffect(()=>{
-  //   axios.get(`http://localhost:5999/users`)
-  // },[])
 
   useEffect(()=>{
     localStorage.setItem("page" , page);

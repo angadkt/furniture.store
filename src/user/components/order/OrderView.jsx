@@ -20,11 +20,8 @@ const OrderView = () => {
   useEffect(()=>{
     fetchOrders()
   },[])
-  console.log("orders" ,orders)
 
-// const products = orders.map((item) => item.products)
-// console.log("products", products);
-// console.log("products", orders[0].products);
+
 
   
 

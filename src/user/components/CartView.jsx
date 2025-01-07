@@ -2,9 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { context_page } from "../context/ContextProduct";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
-import axios from "axios";
-import { h1 } from "framer-motion/client";
-import AddressModal from "./Modal/AddressModal";
 
 const CartView = () => {
  
