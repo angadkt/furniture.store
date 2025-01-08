@@ -107,7 +107,6 @@ const ContextProduct = ({ children }) => {
   // =================================== getCart ==============================================
   const getCart = async () => {
     const cartUser = localStorage.getItem("id");
-
     try {
       const response = await axios.get(`${apiUrl}/getcart/${cartUser}`, {
         headers: {
